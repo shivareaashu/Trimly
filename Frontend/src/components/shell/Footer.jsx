@@ -1,3 +1,5 @@
+'use client';
+
 import { useTranslation } from '../../hooks/useTranslation';
 
 export function Footer() {

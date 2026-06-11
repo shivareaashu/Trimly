@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { useDemo } from '@/demo/DemoContext';
+import { cn } from '@/lib/utils';
 import { Users, Search, Filter, Plus, Star, Calendar, CreditCard, Clock, MessageSquare, Edit3 } from 'lucide-react';
 
 export default function DemoCustomers() {

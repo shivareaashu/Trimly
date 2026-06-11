@@ -18,9 +18,9 @@ export function DemoLayout({ children }) {
 
   if (!mounted) {
     return (
-      <div className="flex min-h-screen bg-slate-950 text-slate-100">
+      <div className="flex min-h-screen bg-[#F8F5F1] text-[#1A1A1A]">
         <div className="flex-1 flex items-center justify-center">
-          <Sparkles className="h-8 w-8 animate-spin text-primary" />
+          <Sparkles className="h-8 w-8 animate-spin text-[#B58A2A]" />
         </div>
       </div>
     );
@@ -35,7 +35,7 @@ export function DemoLayout({ children }) {
   };
 
   return (
-    <div className="flex min-h-screen bg-slate-950 text-slate-100 selection:bg-primary selection:text-slate-950 overflow-hidden font-sans">
+    <div className="flex min-h-screen bg-[#F8F5F1] text-[#1A1A1A] selection:bg-[#E8DCC5] selection:text-[#1A1A1A] overflow-hidden font-sans">
       
       {/* Demo Sidebar */}
       <DemoSidebar collapsed={collapsed} onCollapsedChange={setCollapsed} />
@@ -44,45 +44,45 @@ export function DemoLayout({ children }) {
       <div className="flex-1 flex flex-col min-h-screen overflow-x-hidden relative">
         
         {/* Warning Banner at the top */}
-        <div className="bg-gradient-to-r from-primary/90 to-amber-500/90 text-slate-950 px-4 py-2.5 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs font-semibold tracking-wide shadow-md z-50">
+        <div className="bg-[#B58A2A] text-white px-4 py-2.5 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs font-semibold tracking-wide shadow-md z-50">
           <div className="flex items-center gap-2">
             <AlertCircle className="h-4 w-4 shrink-0 animate-bounce" />
             <span>Trimly Demo Environment — changes are not saved to the database.</span>
           </div>
           <Link
             href="/register"
-            className="flex items-center gap-1 bg-slate-950 text-white hover:bg-slate-900 transition-colors px-3 py-1 rounded-full text-[10px] uppercase font-bold tracking-wider"
+            className="flex items-center gap-1 bg-white text-[#1A1A1A] hover:bg-stone-50 transition-colors px-3 py-1 rounded-full text-[10px] uppercase font-bold tracking-wider"
           >
             Start Free Trial <ArrowRight className="h-3 w-3" />
           </Link>
         </div>
 
         {/* Demo Header */}
-        <header className="h-16 flex items-center justify-between border-b border-slate-800 px-6 backdrop-blur-xl bg-slate-950/80 sticky top-0 z-40">
+        <header className="h-16 flex items-center justify-between border-b border-[#E8DCC5]/40 px-6 backdrop-blur-md bg-white/80 sticky top-0 z-40">
           <div>
-            <h2 className="text-lg font-bold font-display text-white tracking-wide">
+            <h2 className="text-lg font-bold font-sans text-[#1A1A1A] tracking-wide">
               {getHeaderTitle()}
             </h2>
           </div>
           
           <div className="flex items-center gap-3">
-            <div className="hidden sm:flex items-center gap-2 text-xs text-slate-400 bg-slate-900 border border-slate-800 px-3 py-1.5 rounded-xl">
-              <Globe className="h-3.5 w-3.5 text-primary" />
+            <div className="hidden sm:flex items-center gap-2 text-xs text-stone-500 bg-white border border-[#E8DCC5]/50 px-3 py-1.5 rounded-xl">
+              <Globe className="h-3.5 w-3.5 text-[#B58A2A]" />
               <span>Multi-Branch Active</span>
             </div>
             
-            <div className="flex items-center gap-3 bg-slate-900/60 border border-slate-800 px-3.5 py-1.5 rounded-2xl">
-              <UserCircle className="h-5 w-5 text-slate-400" />
+            <div className="flex items-center gap-3 bg-white border border-[#E8DCC5]/50 px-3.5 py-1.5 rounded-2xl">
+              <UserCircle className="h-5 w-5 text-stone-400" />
               <div className="leading-tight">
-                <p className="text-xs font-bold text-white">Aanya Kapoor</p>
-                <p className="text-[9px] text-slate-500 font-semibold">Salon Partner</p>
+                <p className="text-xs font-bold text-[#1A1A1A]">Aanya Kapoor</p>
+                <p className="text-[9px] text-stone-400 font-semibold">Salon Partner</p>
               </div>
             </div>
           </div>
         </header>
 
         {/* Content View */}
-        <main className="flex-1 p-6 md:p-8 bg-slate-950/50">
+        <main className="flex-1 p-6 md:p-8 bg-[#F8F5F1]">
           {children}
         </main>
       </div>

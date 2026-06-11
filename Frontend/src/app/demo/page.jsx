@@ -101,14 +101,14 @@ export default function DemoLandingPage() {
       
       {/* Hero Welcome */}
       <div className="text-center space-y-4 py-6">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/10 text-primary border border-primary/20 text-xs font-semibold tracking-wider uppercase mb-2">
-          <Sparkles className="h-3.5 w-3.5" />
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E8DCC5]/40 text-[#8A6A1F] border border-[#B58A2A]/20 text-xs font-semibold tracking-wider uppercase mb-2">
+          <Sparkles className="h-3.5 w-3.5 text-[#B58A2A]" />
           Interactive Tour
         </div>
-        <h1 className="text-4xl md:text-5xl font-bold font-display text-white tracking-tight">
-          Welcome to <span className="text-primary bg-clip-text">Trimly OS</span>
+        <h1 className="text-4xl md:text-5xl font-bold font-sans text-[#1A1A1A] tracking-tight">
+          Welcome to <span className="text-[#B58A2A]">Trimly OS</span>
         </h1>
-        <p className="text-slate-400 text-sm max-w-xl mx-auto leading-relaxed font-sans">
+        <p className="text-stone-500 text-sm max-w-xl mx-auto leading-relaxed font-sans">
           Select any operational module below to experience the salon management dashboard. Test schedules, website designs, supply chain flows, and financial logs.
         </p>
       </div>
@@ -120,26 +120,26 @@ export default function DemoLandingPage() {
           return (
             <div
               key={idx}
-              className="group relative bg-slate-900/50 border border-slate-800 hover:border-slate-700 rounded-[28px] p-6 flex flex-col justify-between transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1"
+              className="group relative bg-white border border-[#E8DCC5]/50 hover:border-[#B58A2A]/40 rounded-[28px] p-6 flex flex-col justify-between transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
             >
               <div className="space-y-4">
                 <div className="flex justify-between items-center">
-                  <div className={`p-3 rounded-2xl bg-gradient-to-br ${m.color} text-slate-950 shrink-0`}>
+                  <div className={`p-3 rounded-2xl bg-gradient-to-br ${m.color} text-white shrink-0`}>
                     <Icon className="h-5 w-5" />
                   </div>
-                  <span className="text-[10px] uppercase font-bold tracking-wider text-slate-500 bg-slate-800/80 px-2.5 py-1 rounded-full">
+                  <span className="text-[10px] uppercase font-bold tracking-wider text-stone-500 bg-stone-100 px-2.5 py-1 rounded-full">
                     {m.badge}
                   </span>
                 </div>
                 <div className="space-y-2">
-                  <h3 className="font-bold text-base text-white tracking-wide">{m.title}</h3>
-                  <p className="text-xs text-slate-400 leading-relaxed font-sans">{m.description}</p>
+                  <h3 className="font-bold text-base text-[#1A1A1A] tracking-wide">{m.title}</h3>
+                  <p className="text-xs text-stone-500 leading-relaxed font-sans">{m.description}</p>
                 </div>
               </div>
               <div className="pt-6">
                 <Link
                   href={m.href}
-                  className="inline-flex items-center gap-2 text-xs font-bold text-primary group-hover:text-primary/80 transition-colors uppercase tracking-wider"
+                  className="inline-flex items-center gap-2 text-xs font-bold text-[#B58A2A] hover:text-[#8A6A1F] transition-colors uppercase tracking-wider font-sans"
                 >
                   Explore Screen <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
                 </Link>

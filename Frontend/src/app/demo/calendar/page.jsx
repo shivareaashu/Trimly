@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { useDemo } from '@/demo/DemoContext';
+import { cn } from '@/lib/utils';
 import { Calendar as CalendarIcon, Clock, User, Plus, Filter, RefreshCw, Check } from 'lucide-react';
 
 export default function DemoCalendar() {

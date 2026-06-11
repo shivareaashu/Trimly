@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { useDemo } from '@/demo/DemoContext';
+import { cn } from '@/lib/utils';
 import { TrendingUp, FileText, ArrowUpRight, DollarSign, Award, CreditCard, PieChart } from 'lucide-react';
 
 export default function DemoFinance() {

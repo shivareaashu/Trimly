@@ -13,16 +13,16 @@ if (typeof window !== 'undefined') {
 const TREATMENTS = [
   {
     id: 'balayage',
-    tabName: 'Honey Balayage',
-    name: 'Signature Honey Balayage',
-    beforeImg: '/images/hair_color_before.png',
-    afterImg: '/images/hair_color_after.png',
-    beforeLabel: 'Dull Natural Hair',
-    afterLabel: 'Luminous Honey Balayage',
-    duration: '4 Hours',
-    stylist: 'Ananya Sharma (Master Colorist)',
-    details: 'Custom hand-painted highlights tailored to enhance natural skin tones. Includes deep restructuring hair spa and signature blowout.',
-    price: '₹7,500'
+    tabName: 'Royal Barber Shop',
+    name: 'Royal Barber Hair & Beard Grooming',
+    beforeImg: '/images/barber_before.png',
+    afterImg: '/images/barber_after.png',
+    beforeLabel: 'Overgrown Hair & Beard',
+    afterLabel: 'Sharp Fade & Clean Groomed Beard',
+    duration: '1.5 Hours',
+    stylist: 'Kabir Dev (Master Barber)',
+    details: 'An ultra-premium grooming experience featuring a tailored scissor cut, classic straight razor shave with aromatherapy warm towels, and beard styling.',
+    price: '₹2,500'
   },
   {
     id: 'bridal',
@@ -221,6 +221,13 @@ export default function StitchLandingPage() {
   const [billingCycle, setBillingCycle] = useState('monthly'); // 'monthly' or 'annual'
   const [openFaqIndex, setOpenFaqIndex] = useState(null);
   const [activeTreatment, setActiveTreatment] = useState('balayage');
+
+  // Interactive Feature Accordion States
+  const [customerMgmtActive, setCustomerMgmtActive] = useState(0);
+  const [posActive, setPosActive] = useState(0);
+  const [gstActive, setGstActive] = useState(0);
+  const [inventoryActive, setInventoryActive] = useState(0);
+  const [employeeActive, setEmployeeActive] = useState(0);
 
   // Booking Demo State
   const [bookingStep, setBookingStep] = useState(0); // 0: service, 1: staff, 2: time, 3: confirm, 4: success
@@ -980,6 +987,205 @@ export default function StitchLandingPage() {
           </div>
         </section>
 
+        {/* SECTION 3.3: PREMIUM FEATURE CARDS */}
+        <section className="py-24 md:py-32 bg-white border-b border-[#E8DCC5]/40 overflow-hidden">
+          <div className="max-w-[1440px] mx-auto px-6 md:px-12">
+            <div className="text-center max-w-2xl mx-auto mb-20 space-y-4">
+              <span className="text-xs font-sans font-bold text-[#B58A2A] uppercase tracking-widest block">Everything You Need</span>
+              <h2 className="luxury-heading text-3xl md:text-5xl font-medium text-[#1A1A1A]">
+                Powerful Features, <br className="hidden md:block" />
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#B58A2A] to-[#8A6A1F]">Beautifully Designed</span>
+              </h2>
+              <p className="font-sans text-sm md:text-base text-[#1A1A1A]/70">
+                Every feature is purpose-built for Indian salons and barbershops. From regional language booking to WhatsApp campaigns — all in one elegant system.
+              </p>
+            </div>
+
+            {/* Bento Grid Layout */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1200px] mx-auto">
+
+              {/* Card 1: Smart Booking Calendar — Large Card */}
+              <div className="group relative lg:col-span-2 bg-white rounded-[28px] border border-[#E8DCC5]/50 overflow-hidden shadow-sm hover:shadow-2xl hover:shadow-[#B58A2A]/8 transition-all duration-500 hover:-translate-y-1.5 cursor-pointer">
+                <div className="aspect-[2/1] relative overflow-hidden">
+                  <img src="/images/feature_smart_booking.png" alt="Smart Booking Calendar" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-white via-white/40 to-transparent" />
+                  {/* Floating Badge */}
+                  <div className="absolute top-5 left-5 bg-white/90 backdrop-blur-md border border-[#E8DCC5]/60 px-3.5 py-1.5 rounded-full flex items-center gap-2 shadow-lg">
+                    <span className="material-symbols-outlined text-[#B58A2A] text-sm" style={{ fontVariationSettings: "'FILL' 1" }}>calendar_month</span>
+                    <span className="text-[10px] font-sans font-bold text-[#1A1A1A] uppercase tracking-wider">Smart Booking</span>
+                  </div>
+                </div>
+                <div className="p-8 space-y-3">
+                  <h3 className="luxury-heading text-xl md:text-2xl font-medium text-[#1A1A1A] group-hover:text-[#8A6A1F] transition-colors">
+                    Intelligent Appointment Calendar
+                  </h3>
+                  <p className="font-sans text-sm text-[#1A1A1A]/60 leading-relaxed max-w-lg">
+                    AI-powered scheduling that auto-clusters appointments, prevents double-bookings, and sends smart WhatsApp reminders. Reduce no-shows by 65% and fill every chair.
+                  </p>
+                  <div className="flex flex-wrap gap-2 pt-2">
+                    <span className="text-[9px] font-sans font-bold text-[#8A6A1F] bg-[#E8DCC5]/30 px-3 py-1 rounded-full uppercase tracking-wider">Auto Reminders</span>
+                    <span className="text-[9px] font-sans font-bold text-[#8A6A1F] bg-[#E8DCC5]/30 px-3 py-1 rounded-full uppercase tracking-wider">Zero Double-Booking</span>
+                    <span className="text-[9px] font-sans font-bold text-[#8A6A1F] bg-[#E8DCC5]/30 px-3 py-1 rounded-full uppercase tracking-wider">Online Booking Link</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card 2: Multi-Language Support */}
+              <div className="group relative bg-white rounded-[28px] border border-[#E8DCC5]/50 overflow-hidden shadow-sm hover:shadow-2xl hover:shadow-[#B58A2A]/8 transition-all duration-500 hover:-translate-y-1.5 cursor-pointer">
+                <div className="aspect-[4/3] relative overflow-hidden">
+                  <img src="/images/feature_language_support.png" alt="Multi Language Booking" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-white via-white/30 to-transparent" />
+                  <div className="absolute top-5 left-5 bg-white/90 backdrop-blur-md border border-[#E8DCC5]/60 px-3.5 py-1.5 rounded-full flex items-center gap-2 shadow-lg">
+                    <span className="material-symbols-outlined text-[#B58A2A] text-sm" style={{ fontVariationSettings: "'FILL' 1" }}>translate</span>
+                    <span className="text-[10px] font-sans font-bold text-[#1A1A1A] uppercase tracking-wider">8+ Languages</span>
+                  </div>
+                </div>
+                <div className="p-6 space-y-3">
+                  <h3 className="luxury-heading text-lg font-medium text-[#1A1A1A] group-hover:text-[#8A6A1F] transition-colors">
+                    Regional Language Support
+                  </h3>
+                  <p className="font-sans text-xs text-[#1A1A1A]/60 leading-relaxed">
+                    Let your clients book in Hindi, Marathi, Tamil, Kannada, Telugu, Malayalam, Gujarati, or English. True Indian localization.
+                  </p>
+                  <div className="flex flex-wrap gap-1.5 pt-1">
+                    <span className="text-[8px] font-bold text-[#8A6A1F] bg-[#E8DCC5]/25 px-2 py-0.5 rounded-full">हिंदी</span>
+                    <span className="text-[8px] font-bold text-[#8A6A1F] bg-[#E8DCC5]/25 px-2 py-0.5 rounded-full">मराठी</span>
+                    <span className="text-[8px] font-bold text-[#8A6A1F] bg-[#E8DCC5]/25 px-2 py-0.5 rounded-full">தமிழ்</span>
+                    <span className="text-[8px] font-bold text-[#8A6A1F] bg-[#E8DCC5]/25 px-2 py-0.5 rounded-full">ಕನ್ನಡ</span>
+                    <span className="text-[8px] font-bold text-[#8A6A1F] bg-[#E8DCC5]/25 px-2 py-0.5 rounded-full">English</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card 3: Bulk WhatsApp Messages */}
+              <div className="group relative bg-white rounded-[28px] border border-[#E8DCC5]/50 overflow-hidden shadow-sm hover:shadow-2xl hover:shadow-[#B58A2A]/8 transition-all duration-500 hover:-translate-y-1.5 cursor-pointer">
+                <div className="aspect-[4/3] relative overflow-hidden">
+                  <img src="/images/feature_bulk_messages.png" alt="Bulk WhatsApp Campaigns" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-white via-white/30 to-transparent" />
+                  <div className="absolute top-5 left-5 bg-emerald-50/90 backdrop-blur-md border border-emerald-200/60 px-3.5 py-1.5 rounded-full flex items-center gap-2 shadow-lg">
+                    <span className="text-sm">💬</span>
+                    <span className="text-[10px] font-sans font-bold text-emerald-800 uppercase tracking-wider">WhatsApp API</span>
+                  </div>
+                </div>
+                <div className="p-6 space-y-3">
+                  <h3 className="luxury-heading text-lg font-medium text-[#1A1A1A] group-hover:text-[#8A6A1F] transition-colors">
+                    Bulk Revisit Messages
+                  </h3>
+                  <p className="font-sans text-xs text-[#1A1A1A]/60 leading-relaxed">
+                    Auto-detect lapsed clients and send targeted WhatsApp campaigns like "We miss you!" with custom booking links to fill empty chairs.
+                  </p>
+                  <div className="flex items-center gap-3 pt-1">
+                    <div className="flex items-center gap-1.5 text-[9px] font-sans font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                      Live API Connected
+                    </div>
+                    <span className="text-[9px] font-sans font-bold text-[#8A6A1F] bg-[#E8DCC5]/30 px-2.5 py-1 rounded-full uppercase tracking-wider">1-Click Send</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card 4: Salon Treatment Tracking — Large Card */}
+              <div className="group relative lg:col-span-2 bg-white rounded-[28px] border border-[#E8DCC5]/50 overflow-hidden shadow-sm hover:shadow-2xl hover:shadow-[#B58A2A]/8 transition-all duration-500 hover:-translate-y-1.5 cursor-pointer">
+                <div className="grid md:grid-cols-2 h-full">
+                  <div className="aspect-square md:aspect-auto relative overflow-hidden">
+                    <img src="/images/feature_salon_treatment.png" alt="Salon Treatment Tracking" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white/20 hidden md:block" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-white to-transparent md:hidden" />
+                  </div>
+                  <div className="p-8 flex flex-col justify-center space-y-4">
+                    <div className="flex items-center gap-2">
+                      <span className="material-symbols-outlined text-[#B58A2A] text-lg" style={{ fontVariationSettings: "'FILL' 1" }}>spa</span>
+                      <span className="text-[10px] font-sans font-bold text-[#B58A2A] uppercase tracking-widest">Treatment Records</span>
+                    </div>
+                    <h3 className="luxury-heading text-xl md:text-2xl font-medium text-[#1A1A1A] group-hover:text-[#8A6A1F] transition-colors">
+                      Digital Treatment Cards & Service History
+                    </h3>
+                    <p className="font-sans text-sm text-[#1A1A1A]/60 leading-relaxed">
+                      Store photo records of every session. Track allergy notes, color mix formulas, product preferences, and past treatments. Your stylists always know the client's history.
+                    </p>
+                    <div className="flex flex-wrap gap-2 pt-1">
+                      <span className="text-[9px] font-sans font-bold text-[#8A6A1F] bg-[#E8DCC5]/30 px-3 py-1 rounded-full uppercase tracking-wider">Photo Records</span>
+                      <span className="text-[9px] font-sans font-bold text-[#8A6A1F] bg-[#E8DCC5]/30 px-3 py-1 rounded-full uppercase tracking-wider">Color Formulas</span>
+                      <span className="text-[9px] font-sans font-bold text-[#8A6A1F] bg-[#E8DCC5]/30 px-3 py-1 rounded-full uppercase tracking-wider">Allergy Alerts</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card 5: Loyalty & Rewards */}
+              <div className="group relative bg-white rounded-[28px] border border-[#E8DCC5]/50 overflow-hidden shadow-sm hover:shadow-2xl hover:shadow-[#B58A2A]/8 transition-all duration-500 hover:-translate-y-1.5 cursor-pointer">
+                <div className="p-8 space-y-5 h-full flex flex-col justify-between" style={{ background: 'linear-gradient(135deg, #FDF8F0 0%, #F8F5F1 50%, #F0EBE3 100%)' }}>
+                  <div className="space-y-4">
+                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#B58A2A] to-[#8A6A1F] flex items-center justify-center shadow-lg shadow-[#B58A2A]/20">
+                      <span className="material-symbols-outlined text-white text-2xl" style={{ fontVariationSettings: "'FILL' 1" }}>loyalty</span>
+                    </div>
+                    <h3 className="luxury-heading text-lg font-medium text-[#1A1A1A] group-hover:text-[#8A6A1F] transition-colors">
+                      Loyalty & Rewards Engine
+                    </h3>
+                    <p className="font-sans text-xs text-[#1A1A1A]/60 leading-relaxed">
+                      Points, cashback, tier-based VIP perks, birthday bonuses, and referral rewards. Turn every visit into lasting loyalty.
+                    </p>
+                  </div>
+                  {/* Mini Stats Preview */}
+                  <div className="bg-white rounded-2xl border border-[#E8DCC5]/40 p-4 space-y-3 shadow-sm">
+                    <div className="flex justify-between items-center">
+                      <span className="text-[9px] font-sans font-bold text-stone-400 uppercase tracking-wider">Active Members</span>
+                      <span className="text-sm font-sans font-bold text-[#1A1A1A]">1,250+</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-[9px] font-sans font-bold text-stone-400 uppercase tracking-wider">Repeat Rate</span>
+                      <span className="text-sm font-sans font-bold text-emerald-600">80% ↑</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-[9px] font-sans font-bold text-stone-400 uppercase tracking-wider">Revenue Impact</span>
+                      <span className="text-sm font-sans font-bold text-[#B58A2A]">+₹12.5L</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card 6: Staff & Commission Management */}
+              <div className="group relative lg:col-span-3 bg-white rounded-[28px] border border-[#E8DCC5]/50 overflow-hidden shadow-sm hover:shadow-2xl hover:shadow-[#B58A2A]/8 transition-all duration-500 hover:-translate-y-1.5 cursor-pointer">
+                <div className="p-8 md:p-10">
+                  <div className="grid md:grid-cols-3 gap-8 items-center">
+                    {/* Info */}
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-2">
+                        <span className="material-symbols-outlined text-[#B58A2A] text-lg" style={{ fontVariationSettings: "'FILL' 1" }}>groups</span>
+                        <span className="text-[10px] font-sans font-bold text-[#B58A2A] uppercase tracking-widest">Staff Management</span>
+                      </div>
+                      <h3 className="luxury-heading text-xl font-medium text-[#1A1A1A] group-hover:text-[#8A6A1F] transition-colors">
+                        Stylist Commissions & Scheduling
+                      </h3>
+                      <p className="font-sans text-sm text-[#1A1A1A]/60 leading-relaxed">
+                        Automated payroll with commission split logic. Track individual stylist performance, shift rotas, and tip collections.
+                      </p>
+                    </div>
+                    {/* Live Mini Dashboard Preview */}
+                    <div className="md:col-span-2 grid grid-cols-2 md:grid-cols-4 gap-3">
+                      {[
+                        { label: "Active Staff", value: "12", icon: "person", color: "bg-blue-50 text-blue-600" },
+                        { label: "Avg. Commission", value: "₹18K", icon: "payments", color: "bg-emerald-50 text-emerald-600" },
+                        { label: "Shifts This Week", value: "48", icon: "schedule", color: "bg-amber-50 text-amber-700" },
+                        { label: "Tip Collection", value: "₹4,200", icon: "volunteer_activism", color: "bg-purple-50 text-purple-600" }
+                      ].map((stat, idx) => (
+                        <div key={idx} className="bg-[#F8F5F1] border border-[#E8DCC5]/30 rounded-2xl p-4 text-center space-y-2 transition-all duration-300 hover:bg-white hover:shadow-lg hover:border-[#B58A2A]/30 hover:scale-[1.03]">
+                          <div className={`w-9 h-9 rounded-xl ${stat.color} flex items-center justify-center mx-auto`}>
+                            <span className="material-symbols-outlined text-sm" style={{ fontVariationSettings: "'FILL' 1" }}>{stat.icon}</span>
+                          </div>
+                          <div className="text-lg font-sans font-bold text-[#1A1A1A]">{stat.value}</div>
+                          <div className="text-[8px] font-sans font-bold text-stone-400 uppercase tracking-wider">{stat.label}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
         {/* SECTION 3.5: OWNER DASHBOARD DEMO */}
         <section className="py-24 md:py-32 bg-white border-b border-[#E8DCC5]/40">
           <div className="max-w-[1440px] mx-auto px-6 md:px-12">
@@ -1163,6 +1369,532 @@ export default function StitchLandingPage() {
             <MainShowcaseReveal 
               treatment={TREATMENTS.find(t => t.id === activeTreatment) || TREATMENTS[0]} 
             />
+          </div>
+        </section>
+
+        {/* SECTION 4.2: CORE MANAGEMENT ENGINE (Redesigned Feature Sections) */}
+        <section className="py-24 md:py-32 bg-white border-b border-[#E8DCC5]/40 overflow-hidden text-left">
+          <div className="max-w-[1200px] mx-auto px-6 md:px-12 space-y-28 md:space-y-36">
+
+            {/* ═══════════════════════════════════════════════ */}
+            {/* 1. CUSTOMER MANAGEMENT */}
+            {/* ═══════════════════════════════════════════════ */}
+            <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+              {/* Left: Dashboard Mockup */}
+              <div className="relative flex justify-center">
+                {/* Vertical accent bar */}
+                <div className="absolute left-0 top-6 bottom-6 w-1 rounded-full bg-gradient-to-b from-blue-500 via-purple-500 to-pink-500 hidden lg:block" />
+                
+                <div className="relative w-full max-w-[440px] ml-4 lg:ml-8">
+                  {/* Main Card: Customer Profile */}
+                  <div className="bg-white rounded-2xl border border-stone-200/80 shadow-lg p-5 relative z-10">
+                    {/* Header with photo */}
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-12 h-12 rounded-full overflow-hidden bg-stone-200 border-2 border-white shadow-md">
+                        <img src="/images/male_grooming.png" alt="Customer" className="w-full h-full object-cover" />
+                      </div>
+                      <div>
+                        <h4 className="font-sans font-bold text-sm text-[#1A1A1A]">Yashesvi</h4>
+                        <span className="text-[10px] font-sans text-stone-400">+91-92XXXXXX78</span>
+                      </div>
+                    </div>
+                    {/* Action buttons */}
+                    <div className="flex gap-2 mb-4 flex-wrap">
+                      <button className="bg-blue-600 text-white text-[9px] font-sans font-bold px-3 py-1.5 rounded-lg">✏ Edit</button>
+                      <button className="bg-blue-600 text-white text-[9px] font-sans font-bold px-3 py-1.5 rounded-lg">📅 Add Appointment</button>
+                      <button className="bg-blue-100 text-blue-700 text-[9px] font-sans font-bold px-3 py-1.5 rounded-lg">Invoice</button>
+                      <button className="bg-emerald-500 text-white text-[9px] font-sans font-bold px-3 py-1.5 rounded-lg">📱 Send</button>
+                    </div>
+                    {/* Service History Table */}
+                    <div className="bg-stone-50 rounded-xl p-3 mb-3">
+                      <h5 className="font-sans font-bold text-xs text-[#1A1A1A] mb-2">Service History</h5>
+                      <table className="w-full text-[10px] font-sans">
+                        <thead><tr className="text-stone-400 font-bold"><td className="pb-1.5">Date</td><td className="pb-1.5">Service Name</td><td className="pb-1.5">Staff</td><td className="pb-1.5"></td></tr></thead>
+                        <tbody className="text-stone-700 font-medium">
+                          <tr><td className="py-1">18 Aug</td><td>Hair Coloring</td><td>—</td><td className="text-emerald-600 font-bold">Completed</td></tr>
+                          <tr><td className="py-1">11 Aug</td><td>Shaving</td><td>—</td><td className="text-emerald-600 font-bold">Completed</td></tr>
+                          <tr><td className="py-1">02 Aug</td><td>Hair Cut</td><td>—</td><td className="text-emerald-600 font-bold">Completed</td></tr>
+                        </tbody>
+                      </table>
+                      <button className="text-[9px] text-blue-600 font-bold font-sans mt-1.5">View Full History</button>
+                    </div>
+                    {/* Membership Badge */}
+                    <div className="bg-gradient-to-r from-amber-700 to-amber-900 text-white rounded-xl px-4 py-3 flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <span className="text-lg">🏆</span>
+                        <div>
+                          <span className="font-sans font-bold text-xs block">Membership: GOLD</span>
+                          <span className="font-sans text-[9px] text-amber-200">Expiring: 31 Dec 2025</span>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <span className="text-[8px] text-amber-200 block">Available Points</span>
+                        <span className="font-sans font-bold text-sm flex items-center gap-1">🎯 1,250</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Floating Insights Card */}
+                  <div className="absolute -top-4 -right-6 bg-white rounded-xl border border-stone-200 shadow-xl p-3 w-[160px] z-20">
+                    <h5 className="font-sans font-bold text-[10px] text-[#1A1A1A] mb-2">Insights</h5>
+                    <div className="space-y-1.5 text-[9px] font-sans">
+                      <div className="flex justify-between"><span className="text-stone-400">Total Visits:</span><span className="font-bold text-[#1A1A1A]">22</span></div>
+                      <div className="flex justify-between"><span className="text-stone-400">Last Visit:</span><span className="font-bold text-[#1A1A1A]">18 Aug 2025</span></div>
+                      <div className="flex justify-between"><span className="text-stone-400">Avg Spend/Visit:</span><span className="font-bold text-[#1A1A1A]">₹1,850</span></div>
+                      <div className="flex justify-between"><span className="text-stone-400">Favorite Service:</span><span className="font-bold text-[#1A1A1A]">Hair Spa</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right: Title + Accordion */}
+              <div className="space-y-6">
+                <h2 className="font-sans text-3xl md:text-4xl font-bold text-[#1A1A1A] leading-tight">
+                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500">Customer</span> Management
+                </h2>
+                <div className="border border-stone-200/80 rounded-2xl bg-white overflow-hidden shadow-sm">
+                  {[
+                    { title: "Unified Profiles", sub: "Complete client histories", desc: "Maintain complete client histories with preferences, visit records, and past purchases, ensuring personalized service and consistent customer experiences." },
+                    { title: "Smart Scheduling", sub: "Automated reminders", desc: "Auto-send WhatsApp booking confirmations and reminders. Reduce no-shows and keep your chairs filled consistently." },
+                    { title: "Loyalty Rewards", sub: "Repeat customer growth", desc: "Award points for every visit, product purchase, or referral. VIP tiers and birthday bonuses keep your best clients engaged." },
+                    { title: "Feedback Tools", sub: "Real-time engagement", desc: "Auto-collect reviews after checkout. Publish positive testimonials to your website and Google profile instantly." },
+                    { title: "Targeted Campaigns", sub: "Personalized marketing", desc: "Segment clients by visit frequency, spend, or lapse period. Send targeted bulk WhatsApp promotions to drive revisits." }
+                  ].map((item, idx) => {
+                    const isOpen = customerMgmtActive === idx;
+                    return (
+                      <div key={idx} className={`border-b border-stone-100 last:border-0 transition-colors duration-200 ${isOpen ? 'bg-stone-50/50' : ''}`}>
+                        <button onClick={() => setCustomerMgmtActive(idx)} className="w-full px-6 py-4 flex items-center justify-between text-left focus:outline-none group">
+                          <span className="font-sans text-sm">
+                            <strong className={`font-bold transition-colors ${isOpen ? 'text-[#1A1A1A]' : 'text-[#1A1A1A]/80 group-hover:text-[#1A1A1A]'}`}>{item.title}</strong>
+                            <span className="text-stone-400 font-medium"> – {item.sub}</span>
+                          </span>
+                          <span className={`material-symbols-outlined text-stone-400 text-sm transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}>keyboard_arrow_down</span>
+                        </button>
+                        <div className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-32 opacity-100' : 'max-h-0 opacity-0'}`}>
+                          <p className="px-6 pb-4 font-sans text-xs text-stone-500 leading-relaxed">{item.desc}</p>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+
+            {/* ═══════════════════════════════════════════════ */}
+            {/* 2. POS (POINT OF SALE) */}
+            {/* ═══════════════════════════════════════════════ */}
+            <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+              {/* Left: POS Mockup */}
+              <div className="relative flex justify-center order-2 lg:order-1">
+                <div className="absolute left-0 top-6 bottom-6 w-1 rounded-full bg-gradient-to-b from-emerald-400 via-blue-500 to-purple-600 hidden lg:block" />
+                
+                <div className="relative w-full max-w-[420px] ml-4 lg:ml-8">
+                  {/* Main POS Card */}
+                  <div className="bg-white rounded-2xl border border-stone-200/80 shadow-lg p-5 relative z-10">
+                    {/* POS Header */}
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="flex items-center gap-2">
+                        <span className="text-blue-500 text-lg">📶</span>
+                      </div>
+                      <div className="flex gap-4 text-xs font-sans font-bold text-stone-700">
+                        <span className="border-b-2 border-blue-600 pb-1">Cash</span>
+                        <span className="text-stone-400">Card</span>
+                        <span className="text-stone-400">UPI</span>
+                      </div>
+                    </div>
+                    {/* Photo bar */}
+                    <div className="w-full h-20 rounded-xl overflow-hidden mb-4 bg-stone-100">
+                      <img src="/images/barber_after.png" alt="Salon" className="w-full h-full object-cover" />
+                    </div>
+                    {/* Bill Details */}
+                    <div className="space-y-2 mb-4">
+                      <h5 className="font-sans font-bold text-xs text-[#1A1A1A]">Bill</h5>
+                      <div className="space-y-1.5 text-[11px] font-sans">
+                        <div className="flex justify-between"><span className="text-stone-500">Subtotal</span><span className="font-bold text-[#1A1A1A]">₹1,050</span></div>
+                        <div className="flex justify-between"><span className="text-stone-500">Discount</span><span className="font-bold text-red-500">-₹50</span></div>
+                        <div className="flex justify-between"><span className="text-stone-500">GST (18%)</span><span className="font-bold text-[#1A1A1A]">₹180</span></div>
+                        <div className="flex justify-between border-t border-stone-100 pt-1.5"><span className="font-bold text-[#1A1A1A]">Total Bill</span><span className="font-bold text-[#1A1A1A] text-sm">₹1,180</span></div>
+                      </div>
+                      <div className="flex items-center gap-2 pt-1">
+                        <span className="text-emerald-500 text-xs">●</span>
+                        <span className="text-[10px] font-sans font-bold text-emerald-600">Paid</span>
+                      </div>
+                      <div className="flex items-center gap-1.5 text-[10px] font-sans text-stone-400">
+                        <span>📋</span> <span className="font-medium">Split Payment</span>
+                      </div>
+                      <button className="bg-blue-600 text-white text-[10px] font-sans font-bold px-5 py-2 rounded-lg mt-2 shadow-md">Send Invoice</button>
+                    </div>
+                  </div>
+
+                  {/* Floating Customer History Card */}
+                  <div className="absolute top-12 -right-8 bg-white rounded-xl border border-stone-200 shadow-xl p-3.5 w-[185px] z-20">
+                    <h5 className="font-sans font-bold text-[10px] text-[#1A1A1A] mb-2.5">Customer History</h5>
+                    <div className="space-y-2">
+                      <div className="flex justify-between items-center text-[10px] font-sans">
+                        <span className="text-stone-600 font-medium">Hair Cut</span>
+                        <span className="text-stone-400">₹500</span>
+                        <span className="text-blue-600 font-bold cursor-pointer">View</span>
+                      </div>
+                      <div className="flex justify-between items-center text-[10px] font-sans">
+                        <span className="text-stone-600 font-medium">Hair Wash</span>
+                        <span className="text-stone-400">₹300</span>
+                        <span className="text-blue-600 font-bold cursor-pointer">View</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right: Title + Accordion */}
+              <div className="space-y-6 order-1 lg:order-2">
+                <h2 className="font-sans text-3xl md:text-4xl font-bold text-[#1A1A1A] leading-tight">
+                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-emerald-500 via-blue-600 to-purple-600">POS</span> (Point Of Sale)
+                </h2>
+                <div className="border border-stone-200/80 rounded-2xl bg-white overflow-hidden shadow-sm">
+                  {[
+                    { title: "Faster Billing", sub: "GST-ready, touch-screen", desc: "Experience GST-ready Barber Shop billing software with fast, touch-screen invoicing. Works online and offline, ensuring seamless customer experience and compliance every time." },
+                    { title: "Auto Inventory", sub: "Real-time stock updates", desc: "Products used during services are auto-deducted from inventory. Stock levels update in real-time across all branches." },
+                    { title: "Cash Flow Control", sub: "Auto drawer balance, refunds & payouts", desc: "Track cash drawer balance, split payments across card/UPI/cash, manage refunds, and reconcile end-of-day payouts automatically." },
+                    { title: "Revenue Tracking", sub: "Add-ons, retail & staff sales", desc: "Break down revenue by services, retail product sales, add-on treatments, and individual stylist performance." },
+                    { title: "Growth Insights", sub: "Reports to boost services & revenue", desc: "Identify your most profitable services, peak hours, and average ticket size to optimize pricing and staffing." }
+                  ].map((item, idx) => {
+                    const isOpen = posActive === idx;
+                    return (
+                      <div key={idx} className={`border-b border-stone-100 last:border-0 transition-colors duration-200 ${isOpen ? 'bg-stone-50/50' : ''}`}>
+                        <button onClick={() => setPosActive(idx)} className="w-full px-6 py-4 flex items-center justify-between text-left focus:outline-none group">
+                          <span className="font-sans text-sm">
+                            <strong className={`font-bold transition-colors ${isOpen ? 'text-[#1A1A1A]' : 'text-[#1A1A1A]/80 group-hover:text-[#1A1A1A]'}`}>{item.title}</strong>
+                            <span className="text-stone-400 font-medium"> – {item.sub}</span>
+                          </span>
+                          <span className={`material-symbols-outlined text-stone-400 text-sm transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}>keyboard_arrow_down</span>
+                        </button>
+                        <div className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-32 opacity-100' : 'max-h-0 opacity-0'}`}>
+                          <p className="px-6 pb-4 font-sans text-xs text-stone-500 leading-relaxed">{item.desc}</p>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+
+            {/* ═══════════════════════════════════════════════ */}
+            {/* 3. GST ACCOUNTING */}
+            {/* ═══════════════════════════════════════════════ */}
+            <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+              {/* Left: GST Mockup */}
+              <div className="relative flex justify-center">
+                <div className="absolute left-0 top-6 bottom-6 w-1 rounded-full bg-gradient-to-b from-orange-500 via-red-500 to-purple-600 hidden lg:block" />
+                
+                <div className="relative w-full max-w-[420px] ml-4 lg:ml-8">
+                  {/* Main GST Card */}
+                  <div className="bg-white rounded-2xl border border-stone-200/80 shadow-lg p-5 relative z-10">
+                    {/* GST Header */}
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="flex items-center gap-2">
+                        <span className="material-symbols-outlined text-blue-600 text-lg" style={{ fontVariationSettings: "'FILL' 1" }}>receipt_long</span>
+                        <span className="font-sans font-bold text-sm text-[#1A1A1A]">Compliance & GST Reports</span>
+                      </div>
+                      <span className="text-[8px] font-sans font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">India GST Ready</span>
+                    </div>
+                    {/* Action Buttons */}
+                    <div className="flex gap-2 mb-4 flex-wrap">
+                      <button className="bg-blue-600 text-white text-[9px] font-sans font-bold px-3 py-1.5 rounded-lg flex items-center gap-1">📄 Generate GST Invoice</button>
+                      <button className="bg-blue-100 text-blue-700 text-[9px] font-sans font-bold px-3 py-1.5 rounded-lg flex items-center gap-1">📊 Download GST Report</button>
+                    </div>
+                    <div className="flex gap-2 mb-4">
+                      <button className="bg-stone-100 text-stone-600 text-[9px] font-sans font-bold px-3 py-1.5 rounded-lg">🔄 Reconcile with GSTN</button>
+                      <button className="bg-stone-100 text-stone-600 text-[9px] font-sans font-bold px-3 py-1.5 rounded-lg">⚙ Settings</button>
+                    </div>
+                    {/* Salon Photo */}
+                    <div className="w-full h-16 rounded-xl overflow-hidden mb-4 bg-stone-100">
+                      <img src="/images/salon_interior_after.png" alt="Salon" className="w-full h-full object-cover" />
+                    </div>
+                    {/* GST Overview */}
+                    <div className="bg-stone-50 rounded-xl p-4">
+                      <div className="flex items-center justify-between mb-3">
+                        <h5 className="font-sans font-bold text-xs text-[#1A1A1A]">GST Overview – August 2025</h5>
+                      </div>
+                      <div className="flex items-center gap-3 mb-3 text-[10px] font-sans">
+                        <input type="text" readOnly className="border border-stone-200 rounded-lg px-2 py-1 text-[10px] w-28 bg-white" value="Search invoice/custome" />
+                        <select className="border border-stone-200 rounded-lg px-2 py-1 text-[10px] bg-white">
+                          <option>August 2025</option>
+                        </select>
+                      </div>
+                      <div className="grid grid-cols-2 gap-3 text-center">
+                        <div className="bg-white rounded-lg p-2.5 border border-stone-100">
+                          <span className="text-[8px] font-sans text-stone-400 block">Total GST Collected (This Month)</span>
+                          <span className="font-sans font-bold text-sm text-[#1A1A1A]">₹1,25,400</span>
+                        </div>
+                        <div className="bg-white rounded-lg p-2.5 border border-stone-100">
+                          <span className="text-[8px] font-sans text-stone-400 block">Total GST Paid (This Month)</span>
+                          <span className="font-sans font-bold text-sm text-[#1A1A1A]">₹98,700</span>
+                        </div>
+                        <div className="bg-white rounded-lg p-2.5 border border-stone-100">
+                          <span className="text-[8px] font-sans text-stone-400 block">Net GST Payable</span>
+                          <span className="font-sans font-bold text-sm text-blue-700">₹26,700</span>
+                        </div>
+                        <div className="bg-white rounded-lg p-2.5 border border-stone-100">
+                          <span className="text-[8px] font-sans text-stone-400 block">Invoices Generated</span>
+                          <span className="font-sans font-bold text-sm text-[#1A1A1A]">152</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right: Title + Accordion */}
+              <div className="space-y-6">
+                <h2 className="font-sans text-3xl md:text-4xl font-bold text-[#1A1A1A] leading-tight">
+                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-orange-500 via-red-500 to-purple-600">GST</span> Accounting
+                </h2>
+                <div className="border border-stone-200/80 rounded-2xl bg-white overflow-hidden shadow-sm">
+                  {[
+                    { title: "Simple GST Billing", sub: "Filing for Growing Salons", desc: "Create fast, GST-compliant invoices online and offline, optimize barber shop accounting workflow, and ensure seamless tax filing for barber shop growth." },
+                    { title: "Effortless GST Accounting", sub: "Reports & Compliance Made Easy", desc: "Auto-generate GSTR-1, GSTR-3B, and GSTR-9 reports. Reconcile input tax credits against purchases and track your net GST liability." },
+                    { title: "Smart GST Solutions", sub: "To Boost Your Salon's Growth", desc: "Categorize services under correct HSN/SAC codes. Apply different GST rates for services vs retail products automatically." },
+                    { title: "One-Click GST Invoices", sub: "Returns & Tax Reports", desc: "Generate professional GST invoices with one click. Download monthly and quarterly tax reports ready for your CA or filing portal." },
+                    { title: "Hassle-Free GST Compliance", sub: "for Modern Salon Businesses", desc: "Stay compliant with automated tax calculations, digital record keeping, and GSTN reconciliation features built specifically for salons." }
+                  ].map((item, idx) => {
+                    const isOpen = gstActive === idx;
+                    return (
+                      <div key={idx} className={`border-b border-stone-100 last:border-0 transition-colors duration-200 ${isOpen ? 'bg-stone-50/50' : ''}`}>
+                        <button onClick={() => setGstActive(idx)} className="w-full px-6 py-4 flex items-center justify-between text-left focus:outline-none group">
+                          <span className="font-sans text-sm">
+                            <strong className={`font-bold transition-colors ${isOpen ? 'text-[#1A1A1A]' : 'text-[#1A1A1A]/80 group-hover:text-[#1A1A1A]'}`}>{item.title}</strong>
+                            <span className="text-stone-400 font-medium"> – {item.sub}</span>
+                          </span>
+                          <span className={`material-symbols-outlined text-stone-400 text-sm transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}>keyboard_arrow_down</span>
+                        </button>
+                        <div className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-32 opacity-100' : 'max-h-0 opacity-0'}`}>
+                          <p className="px-6 pb-4 font-sans text-xs text-stone-500 leading-relaxed">{item.desc}</p>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+
+            {/* ═══════════════════════════════════════════════ */}
+            {/* 4. INVENTORY & WAREHOUSE */}
+            {/* ═══════════════════════════════════════════════ */}
+            <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+              {/* Left: Title + Accordion */}
+              <div className="space-y-6 order-2 lg:order-1">
+                <h2 className="font-sans text-3xl md:text-4xl font-bold text-[#1A1A1A] leading-tight">
+                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-rose-500 to-blue-600">Inventory & Warehouse</span>
+                  <br />Management
+                </h2>
+                <div className="border border-stone-200/80 rounded-2xl bg-white overflow-hidden shadow-sm">
+                  {[
+                    { title: "Boost Profits", sub: "Track top-selling products", desc: "Identify top-selling products across inventory and warehouse. Optimize stock flow, maximize profits, and ensure faster turnover for steady salon growth." },
+                    { title: "Cut Wastage", sub: "Control pilferage & misuse", desc: "Track product usage per service automatically. Flag unusual consumption patterns and prevent product theft or overuse." },
+                    { title: "Stay Stocked", sub: "Auto reorder alerts", desc: "Set minimum stock thresholds. Receive automated alerts when products run low and trigger purchase orders with one click." },
+                    { title: "Smarter Purchases", sub: "Fast vs. slow movers", desc: "Analyze product movement speed. Identify dead stock vs fast-moving items to optimize your purchase orders and shelf space." },
+                    { title: "Centralized Control", sub: "Multi-branch warehouses", desc: "Manage central warehouse and branch-level inventories from a single dashboard. Track inter-branch transfers and supplier orders." }
+                  ].map((item, idx) => {
+                    const isOpen = inventoryActive === idx;
+                    return (
+                      <div key={idx} className={`border-b border-stone-100 last:border-0 transition-colors duration-200 ${isOpen ? 'bg-stone-50/50' : ''}`}>
+                        <button onClick={() => setInventoryActive(idx)} className="w-full px-6 py-4 flex items-center justify-between text-left focus:outline-none group">
+                          <span className="font-sans text-sm">
+                            <strong className={`font-bold transition-colors ${isOpen ? 'text-[#1A1A1A]' : 'text-[#1A1A1A]/80 group-hover:text-[#1A1A1A]'}`}>{item.title}</strong>
+                            <span className="text-stone-400 font-medium"> – {item.sub}</span>
+                          </span>
+                          <span className={`material-symbols-outlined text-stone-400 text-sm transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}>keyboard_arrow_down</span>
+                        </button>
+                        <div className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-32 opacity-100' : 'max-h-0 opacity-0'}`}>
+                          <p className="px-6 pb-4 font-sans text-xs text-stone-500 leading-relaxed">{item.desc}</p>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Right: Inventory Mockup */}
+              <div className="relative flex justify-center order-1 lg:order-2">
+                <div className="absolute right-0 top-6 bottom-6 w-1 rounded-full bg-gradient-to-b from-pink-500 via-rose-500 to-blue-600 hidden lg:block" />
+                
+                <div className="relative w-full max-w-[420px] mr-4 lg:mr-8">
+                  {/* Consumption vs Services Card */}
+                  <div className="bg-white rounded-2xl border border-stone-200/80 shadow-lg overflow-hidden relative z-10">
+                    {/* Consumption Header */}
+                    <div className="bg-stone-800 text-white p-4 flex items-start gap-3">
+                      <div className="flex-1">
+                        <h5 className="font-sans font-bold text-xs mb-2">Consumption vs Services</h5>
+                        <ul className="text-[9px] font-sans text-stone-300 space-y-1 list-disc list-inside">
+                          <li>Hair Spa — Used 8 shampoo bottles this month</li>
+                          <li>Gold Facial — Consumed 12 facial kits</li>
+                          <li>Hair Coloring — Used 15 color kits</li>
+                        </ul>
+                      </div>
+                      <div className="w-20 h-16 rounded-lg overflow-hidden flex-shrink-0">
+                        <img src="/images/salon_interior_after.png" alt="Salon" className="w-full h-full object-cover" />
+                      </div>
+                    </div>
+                    {/* Action Buttons */}
+                    <div className="flex gap-2 p-4 flex-wrap">
+                      <button className="bg-blue-600 text-white text-[8px] font-sans font-bold px-2.5 py-1.5 rounded-lg flex items-center gap-1">+ Add Product</button>
+                      <button className="bg-blue-100 text-blue-700 text-[8px] font-sans font-bold px-2.5 py-1.5 rounded-lg">📋 New Purchase</button>
+                      <button className="bg-emerald-100 text-emerald-700 text-[8px] font-sans font-bold px-2.5 py-1.5 rounded-lg">📦 Stock Transfer</button>
+                      <button className="bg-amber-100 text-amber-700 text-[8px] font-sans font-bold px-2.5 py-1.5 rounded-lg">🔔 Reorder Alerts</button>
+                    </div>
+                    {/* Reorder Alerts List */}
+                    <div className="px-4 pb-4">
+                      <h5 className="font-sans font-bold text-xs text-[#1A1A1A] mb-3">Reorder Alerts</h5>
+                      <div className="space-y-3">
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <span className="font-sans font-bold text-[11px] text-[#1A1A1A] block">Matrix Hair Color Kit</span>
+                            <span className="text-[9px] font-sans text-stone-400">Only 6 left</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <span className="text-[8px] font-bold text-white bg-red-500 px-2 py-0.5 rounded-full">Urgent</span>
+                            <span className="text-[10px] font-bold text-blue-600 cursor-pointer">Reorder</span>
+                          </div>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <span className="font-sans font-bold text-[11px] text-[#1A1A1A] block">Loreal Shampoo 1L</span>
+                            <span className="text-[9px] font-sans text-stone-400">Only 4 left</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <span className="text-[8px] font-bold text-amber-700 bg-amber-100 px-2 py-0.5 rounded-full">Low</span>
+                            <span className="text-[10px] font-bold text-blue-600 cursor-pointer">Reorder</span>
+                          </div>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <span className="font-sans font-bold text-[11px] text-[#1A1A1A] block">Disposable Towels (100 pcs)</span>
+                            <span className="text-[9px] font-sans text-stone-400">Only 1 pack left</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <span className="text-[8px] font-bold text-rose-600 bg-rose-50 px-2 py-0.5 rounded-full">Critical</span>
+                            <span className="text-[10px] font-bold text-blue-600 cursor-pointer">Reorder</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* ═══════════════════════════════════════════════ */}
+            {/* 5. EMPLOYEE MANAGEMENT */}
+            {/* ═══════════════════════════════════════════════ */}
+            <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+              {/* Left: Title + Accordion */}
+              <div className="space-y-6">
+                <h2 className="font-sans text-3xl md:text-4xl font-bold text-[#1A1A1A] leading-tight">
+                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-rose-500 via-pink-500 to-amber-500">Employee</span> Management
+                </h2>
+                <div className="border border-stone-200/80 rounded-2xl bg-white overflow-hidden shadow-sm">
+                  {[
+                    { title: "Track Staff Performance", sub: "Reward with Automated Incentives", desc: "Boost staff productivity with automated performance tracking, monitor key metrics, and reward top performers to enhance efficiency and barber shop profitability." },
+                    { title: "Seamless Attendance Management", sub: "Shifts & Leave Requests Made Easy", desc: "Track real-time attendance with biometric integration. Manage shift scheduling, overtime calculations, and leave approvals from one panel." },
+                    { title: "Client Loyalty Boost", sub: "Personalized Stylist Preferences", desc: "Let clients choose their favorite stylists when booking. Track stylist-level satisfaction scores and repeat client ratios." },
+                    { title: "Automated Payroll Processing", sub: "Faster & Accurate Salary Disbursal", desc: "Auto-calculate salaries with commission splits, deductions, bonuses, and tip distributions. Generate payslips and track disbursements." },
+                    { title: "Multi-Branch Control", sub: "Easily Manage Staff Roles Across Salons", desc: "Assign roles, permissions, and branch-level access. Manage inter-branch staff transfers and holiday calendars centrally." }
+                  ].map((item, idx) => {
+                    const isOpen = employeeActive === idx;
+                    return (
+                      <div key={idx} className={`border-b border-stone-100 last:border-0 transition-colors duration-200 ${isOpen ? 'bg-stone-50/50' : ''}`}>
+                        <button onClick={() => setEmployeeActive(idx)} className="w-full px-6 py-4 flex items-center justify-between text-left focus:outline-none group">
+                          <span className="font-sans text-sm">
+                            <strong className={`font-bold transition-colors ${isOpen ? 'text-[#1A1A1A]' : 'text-[#1A1A1A]/80 group-hover:text-[#1A1A1A]'}`}>{item.title}</strong>
+                            <span className="text-stone-400 font-medium"> – {item.sub}</span>
+                          </span>
+                          <span className={`material-symbols-outlined text-stone-400 text-sm transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}>keyboard_arrow_down</span>
+                        </button>
+                        <div className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-32 opacity-100' : 'max-h-0 opacity-0'}`}>
+                          <p className="px-6 pb-4 font-sans text-xs text-stone-500 leading-relaxed">{item.desc}</p>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Right: Employee Mockup */}
+              <div className="relative flex justify-center">
+                <div className="absolute right-0 top-6 bottom-6 w-1 rounded-full bg-gradient-to-b from-rose-500 via-pink-500 to-amber-500 hidden lg:block" />
+                
+                <div className="relative w-full max-w-[420px] mr-4 lg:mr-8">
+                  {/* Main Employee Card */}
+                  <div className="bg-white rounded-2xl border border-stone-200/80 shadow-lg p-5 relative z-10">
+                    {/* Header Buttons */}
+                    <div className="flex gap-2 mb-4">
+                      <button className="bg-blue-600 text-white text-[9px] font-sans font-bold px-3 py-1.5 rounded-lg">+ New Staff</button>
+                      <button className="bg-stone-100 text-stone-600 text-[9px] font-sans font-bold px-3 py-1.5 rounded-lg">Export CSV</button>
+                    </div>
+                    
+                    {/* Attendance Tracking */}
+                    <div className="bg-stone-50 rounded-xl p-3 mb-3">
+                      <h5 className="font-sans font-bold text-[10px] text-[#1A1A1A] mb-2.5">Real-Time Biometric Attendance Tracking</h5>
+                      <div className="space-y-2">
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-2">
+                            <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                            <div>
+                              <span className="font-sans font-bold text-[10px] text-[#1A1A1A] block">Ramesh Yadav</span>
+                              <span className="text-[8px] font-sans text-stone-400">Hairdresser • Present - 10:30 AM</span>
+                            </div>
+                          </div>
+                          <span className="text-[8px] font-sans text-stone-400 font-medium">Total: 10h 31m</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                          <div>
+                            <span className="font-sans font-bold text-[10px] text-[#1A1A1A] block">Karan Mishra</span>
+                            <span className="text-[8px] font-sans text-stone-400">Receptionist • Present - 9:45 AM</span>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="w-2 h-2 rounded-full bg-stone-300" />
+                          <div>
+                            <span className="font-sans font-bold text-[10px] text-[#1A1A1A] block">Ganesh Singh</span>
+                            <span className="text-[8px] font-sans text-red-400">On Leave</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Payroll Table */}
+                    <div className="bg-stone-50 rounded-xl p-3 mb-3">
+                      <h5 className="font-sans font-bold text-[10px] text-[#1A1A1A] mb-2.5">Payroll & Salary Management</h5>
+                      <table className="w-full text-[10px] font-sans">
+                        <thead><tr className="text-stone-400 font-bold"><td className="pb-1.5">Staff</td><td className="pb-1.5">Salary</td><td className="pb-1.5">Status</td></tr></thead>
+                        <tbody className="text-stone-700 font-medium">
+                          <tr><td className="py-1">Ramesh Yadav</td><td>₹30,000</td><td><span className="text-[8px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">Paid</span></td></tr>
+                          <tr><td className="py-1">Karan Mishra</td><td>₹28,000</td><td><span className="text-[8px] font-bold text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full">Pending</span></td></tr>
+                          <tr><td className="py-1">Ganesh Singh</td><td>₹25,000</td><td><span className="text-[8px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">Paid</span></td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+                    {/* Performance Tracking */}
+                    <div className="bg-stone-50 rounded-xl p-3">
+                      <h5 className="font-sans font-bold text-[10px] text-[#1A1A1A] mb-2">Performance Tracking</h5>
+                      <div className="space-y-1 text-[10px] font-sans">
+                        <div className="flex justify-between"><span className="text-stone-400">Top Performer</span><span className="font-bold text-[#1A1A1A]">Mahima Verma</span></div>
+                        <div className="flex justify-between"><span className="text-stone-400">Services (Aug)</span><span className="font-bold text-[#1A1A1A]">58</span></div>
+                        <div className="flex justify-between"><span className="text-stone-400">Avg Rating</span><span className="font-bold text-amber-500">⭐ 4.9</span></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Floating photo badge */}
+                  <div className="absolute -top-3 right-4 w-16 h-16 rounded-xl overflow-hidden border-3 border-white shadow-xl z-20">
+                    <img src="/images/male_grooming.png" alt="Staff" className="w-full h-full object-cover" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </section>
 
