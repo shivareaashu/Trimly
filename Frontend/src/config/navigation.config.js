@@ -1,0 +1,112 @@
+import {
+  BarChart2,
+  Building2,
+  CalendarCheck,
+  CreditCard,
+  Activity,
+  Globe,
+  LayoutDashboard,
+  Receipt,
+  ShieldCheck,
+  TrendingUp,
+  Users,
+  Wallet,
+  Clock,
+  Truck,
+  FileText,
+  Package,
+  PackageCheck,
+  ClipboardCheck,
+  DollarSign,
+  Bell,
+  ClipboardList,
+  UserCheck,
+  Timer,
+} from 'lucide-react';
+
+export const NAVIGATION = [
+  {
+    title: 'Overview',
+    scope: 'admin',
+    items: [
+      { label: 'Dashboard', href: '/dashboard', icon: LayoutDashboard, permission: 'dashboard.view' },
+      { label: 'Daily Summary', href: '/daily-summary', icon: Activity, module: 'analytics', permission: 'analytics.view' },
+    ],
+  },
+  {
+    title: 'Operations',
+    scope: 'admin',
+    items: [
+      { label: 'Appointments', href: '/appointments', icon: CalendarCheck, module: 'bookings', permission: 'booking.view' },
+      { label: 'Walk-In Desk', href: '/reception', icon: ClipboardList, module: 'bookings', permission: 'booking.create' },
+      { label: 'Billing Queue', href: '/billing-queue', icon: Receipt, module: 'bookings', permission: 'booking.billing' },
+      { label: 'Customers', href: '/customers', icon: Users, module: 'customers', permission: 'customer.view' },
+      { label: 'Revisit Center', href: '/revisit-center', icon: UserCheck, module: 'customers', permission: 'customer.view' },
+      { label: 'Website Builder', href: '/website', icon: Globe, module: 'websites', permission: 'websites.view' },
+    ],
+  },
+  {
+    title: 'Supply Chain',
+    scope: 'admin',
+    items: [
+      { label: 'Inventory', href: '/inventory', icon: Package, module: 'inventory', permission: 'inventory.view' },
+      { label: 'Suppliers', href: '/suppliers', icon: Truck, module: 'suppliers', permission: 'suppliers.view' },
+      { label: 'Purchase Orders', href: '/suppliers/purchase-orders', icon: FileText, module: 'purchaseOrders', permission: 'purchase-orders.view' },
+      { label: 'Deliveries', href: '/suppliers/deliveries', icon: PackageCheck, module: 'inventory', permission: 'inventory.view' },
+    ],
+  },
+  {
+    title: 'Staff & Finance',
+    scope: 'admin',
+    items: [
+      { label: 'Staff Settings', href: '/staff', icon: Users, module: 'staff', permission: 'staff.view' },
+      { label: 'Attendance', href: '/attendance', icon: Clock, module: 'staff', permission: 'attendance.view' },
+      { label: 'Payroll', href: '/payroll', icon: Wallet, module: 'payroll', permission: 'payroll.view' },
+      { label: 'Expenses', href: '/expenses', icon: Receipt, module: 'expenses', permission: 'expenses.view' },
+      { label: 'Finance P&L', href: '/finance', icon: TrendingUp, module: 'finance', permission: 'finance.view' },
+    ],
+  },
+  {
+    title: 'Insights',
+    scope: 'admin',
+    items: [
+      { label: 'Analytics', href: '/analytics', icon: BarChart2, module: 'analytics', permission: 'analytics.view' },
+      { label: 'Payments', href: '/payments', icon: Wallet, module: 'payments', permission: 'payment.view' },
+    ],
+  },
+  {
+    title: 'Platform',
+    scope: 'superadmin',
+    items: [
+      { label: 'Platform Overview', href: '/superadmin/dashboard', icon: LayoutDashboard, permission: 'platform.dashboard.view' },
+      { label: 'Salon Tenants', href: '/superadmin/tenants', icon: Building2, permission: 'platform.tenants.view' },
+      { label: 'Subscriptions', href: '/superadmin/subscriptions', icon: CreditCard, permission: 'platform.subscriptions.view' },
+      { label: 'Approvals', href: '/superadmin/approvals', icon: ShieldCheck, permission: 'platform.approvals.view' },
+      { label: 'Platform Analytics', href: '/superadmin/analytics', icon: BarChart2, permission: 'platform.analytics.view' },
+    ],
+  },
+  {
+    title: 'My Work',
+    scope: 'staff',
+    items: [
+      { label: 'Dashboard', href: '/dashboard', icon: LayoutDashboard, permission: 'staff.dashboard.view' },
+      { label: 'My Queue', href: '/my-queue', icon: Timer, module: 'bookings', permission: 'booking.view' },
+      { label: 'My Calendar', href: '/appointments', icon: CalendarCheck, module: 'bookings', permission: 'booking.view' },
+      { label: 'My Customers', href: '/customers', icon: Users, module: 'customers', permission: 'customer.view' },
+      { label: 'Attendance', href: '/attendance', icon: ClipboardCheck, module: 'staff', permission: 'staff.attendance.manage' },
+      { label: 'Commission', href: '/payroll', icon: DollarSign, module: 'payroll', permission: 'staff.commission.view' },
+      { label: 'Notifications', href: '/dashboard', icon: Bell, module: 'notifications', permission: 'staff.notifications.view' },
+    ],
+  },
+  {
+    title: 'Front Desk',
+    scope: 'receptionist',
+    items: [
+      { label: 'Reception', href: '/reception', icon: ClipboardList, module: 'bookings', permission: 'booking.create' },
+      { label: 'Check-In Board', href: '/appointments', icon: CalendarCheck, module: 'bookings', permission: 'booking.view' },
+      { label: 'Billing Queue', href: '/billing-queue', icon: Receipt, module: 'bookings', permission: 'booking.billing' },
+      { label: 'Customers', href: '/customers', icon: Users, module: 'customers', permission: 'customer.view' },
+      { label: 'Revisit Center', href: '/revisit-center', icon: UserCheck, module: 'customers', permission: 'customer.view' },
+    ],
+  },
+];

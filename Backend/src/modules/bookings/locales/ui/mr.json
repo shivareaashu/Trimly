@@ -1,0 +1,8 @@
+{
+  "_version": 1,
+  "booking.select_service": "सेवा निवडा",
+  "booking.select_staff": "कर्मचारी निवडा",
+  "booking.select_date": "दिनांक निवडा",
+  "booking.select_slot": "वेळ निवडा",
+  "booking.confirm": "बुकिंग निश्चित करा"
+}

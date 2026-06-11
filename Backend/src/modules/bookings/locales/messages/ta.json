@@ -1,0 +1,6 @@
+{
+  "_version": 1,
+  "booking.confirmed": "வணக்கம் {customerName}, {salonName} இல் {staffName} உடன் {time} மணிக்கு உங்கள் முன்பதிவு உறுதியானது. உங்களை காண காத்திருக்கிறோம்!",
+  "booking.reminder": "நினைவூட்டல்: வணக்கம் {customerName}, நாளை {time} மணிக்கு {salonName} இல் {staffName} உடன் உங்கள் சந்திப்பு உள்ளது.",
+  "booking.thankyou": "வணக்கம் {customerName}, இன்று {salonName} க்கு வந்தமைக்கு நன்றி! எங்கள் சேவை உங்களுக்கு பிடித்திருக்கும் என நம்புகிறோம்."
+}

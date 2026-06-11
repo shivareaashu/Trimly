@@ -1,0 +1,20 @@
+{
+  "_version": 1,
+  "analytics.dashboard_title": "Dashboard",
+  "analytics.earnings_today": "Today's Earnings",
+  "analytics.earnings_week": "This Week's Earnings",
+  "analytics.earnings_month": "This Month's Earnings",
+  "analytics.earnings_year": "This Year's Earnings",
+  "analytics.appointments_total": "Total Appointments",
+  "analytics.appointments_completed": "Completed Appointments",
+  "analytics.appointments_cancelled": "Cancelled Appointments",
+  "analytics.appointments_pending": "Pending Appointments",
+  "analytics.appointments_missed": "Missed Appointments",
+  "analytics.customers_total": "Total Customers",
+  "analytics.customers_new": "New Customers",
+  "analytics.customers_returning": "Returning Customers",
+  "analytics.customers_vip": "VIP Customers",
+  "analytics.customers_inactive": "Inactive Customers",
+  "analytics.average_bill_value": "Average Bill Value",
+  "analytics.staff_workload": "Staff Workload"
+}

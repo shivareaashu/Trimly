@@ -1,0 +1,14 @@
+{
+  "_version": 1,
+  "analytics.dashboard_title": "डैशबोर्ड",
+  "analytics.earnings_today": "आज की कमाई",
+  "analytics.earnings_week": "इस सप्ताह की कमाई",
+  "analytics.earnings_month": "इस महीने की कमाई",
+  "analytics.earnings_year": "इस वर्ष की कमाई",
+  "analytics.appointments_total": "कुल अपॉइंटमेंट",
+  "analytics.appointments_completed": "पूरे हुए अपॉइंटमेंट",
+  "analytics.appointments_cancelled": "रद्द हुए अपॉइंटमेंट",
+  "analytics.appointments_pending": "लंबित अपॉइंटमेंट",
+  "analytics.appointments_missed": "छूटे हुए अपॉइंटमेंट",
+  "analytics.customers_total": "कुल ग्राहक"
+}

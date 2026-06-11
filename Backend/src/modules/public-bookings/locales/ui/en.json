@@ -1,0 +1,7 @@
+{
+  "_version": 1,
+  "public_booking.rate_limit": "Too many booking attempts. Please try again after a minute.",
+  "public_booking.bot_detected": "Booking could not be processed.",
+  "public_booking.notice_limit": "Bookings must be scheduled at least {hours} hours in advance.",
+  "public_booking.hold_overlap": "This slot is already being held by another customer."
+}

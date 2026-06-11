@@ -1,0 +1,8 @@
+{
+  "_version": 1,
+  "booking.select_service": "സേവനം തിരഞ്ഞെടുക്കുക",
+  "booking.select_staff": "സ്റ്റാഫിനെ തിരഞ്ഞെടുക്കുക",
+  "booking.select_date": "തീയതി തിരഞ്ഞെടുക്കുക",
+  "booking.select_slot": "സമയം തിരഞ്ഞെടുക്കുക",
+  "booking.confirm": "ബുക്കിംഗ് സ്ഥിരീകരിക്കുക"
+}

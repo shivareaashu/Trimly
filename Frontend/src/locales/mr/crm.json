@@ -1,0 +1,8 @@
+{
+  "_version": 1,
+  "crm.add_customer": "ग्राहक जोडा",
+  "crm.edit_customer": "ग्राहक संपादित करा",
+  "crm.visit_history": "भेट इतिहास",
+  "crm.notes": "नोंदी",
+  "crm.tags": "टॅग्ज"
+}

@@ -1,0 +1,8 @@
+{
+  "_version": 1,
+  "booking.select_service": "సేవను ఎంచుకోండి",
+  "booking.select_staff": "సిబ్బందిని ఎంచుకోండి",
+  "booking.select_date": "తేదీని ఎంచుకోండి",
+  "booking.select_slot": "సమయాన్ని ఎంచుకోండి",
+  "booking.confirm": "బుకింగ్ నిర్ధారించండి"
+}

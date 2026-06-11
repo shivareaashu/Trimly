@@ -1,0 +1,8 @@
+{
+  "_version": 1,
+  "booking.select_service": "சேவையைத் தேர்ந்தெடுக்கவும்",
+  "booking.select_staff": "ஊழியரைத் தேர்ந்தெடுக்கவும்",
+  "booking.select_date": "தேதியைத் தேர்ந்தெடுக்கவும்",
+  "booking.select_slot": "நேரத்தைத் தேர்ந்தெடுக்கவும்",
+  "booking.confirm": "முன்பதிவை உறுதிசெய்"
+}

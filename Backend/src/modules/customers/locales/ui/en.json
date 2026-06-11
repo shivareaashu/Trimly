@@ -1,0 +1,6 @@
+{
+  "_version": 1,
+  "crm.add_customer": "Add Customer",
+  "crm.edit_customer": "Edit Customer",
+  "crm.visit_history": "Visit History"
+}

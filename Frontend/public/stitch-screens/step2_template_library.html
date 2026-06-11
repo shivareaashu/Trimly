@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Trimly - Template Marketplace</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&amp;family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-dim": "#dcd9d9",
+                      "surface-container-highest": "#e5e2e1",
+                      "primary": "#735c00",
+                      "secondary-container": "#e3e3de",
+                      "surface-bright": "#fcf9f8",
+                      "on-surface-variant": "#4d4635",
+                      "on-tertiary-container": "#444543",
+                      "outline": "#7f7663",
+                      "inverse-primary": "#e9c349",
+                      "on-surface": "#1c1b1b",
+                      "tertiary": "#5e5f5c",
+                      "secondary-fixed": "#e3e3de",
+                      "on-tertiary-fixed-variant": "#464744",
+                      "inverse-on-surface": "#f3f0ef",
+                      "background": "#fcf9f8",
+                      "error": "#ba1a1a",
+                      "surface": "#fcf9f8",
+                      "tertiary-fixed": "#e3e2de",
+                      "on-secondary-container": "#646561",
+                      "primary-fixed": "#ffe088",
+                      "on-secondary-fixed": "#1b1c19",
+                      "inverse-surface": "#313030",
+                      "on-error-container": "#93000a",
+                      "on-secondary-fixed-variant": "#464744",
+                      "surface-container-high": "#eae7e7",
+                      "primary-container": "#d4af37",
+                      "on-primary-fixed-variant": "#574500",
+                      "outline-variant": "#d0c5af",
+                      "secondary-fixed-dim": "#c7c7c2",
+                      "tertiary-container": "#b3b3af",
+                      "surface-tint": "#735c00",
+                      "secondary": "#5e5f5b",
+                      "on-background": "#1c1b1b",
+                      "primary-fixed-dim": "#e9c349",
+                      "on-tertiary": "#ffffff",
+                      "on-primary-fixed": "#241a00",
+                      "on-primary-container": "#554300",
+                      "on-secondary": "#ffffff",
+                      "on-primary": "#ffffff",
+                      "surface-variant": "#e5e2e1",
+                      "on-tertiary-fixed": "#1b1c1a",
+                      "on-error": "#ffffff",
+                      "tertiary-fixed-dim": "#c7c6c3",
+                      "surface-container": "#f0eded",
+                      "error-container": "#ffdad6",
+                      "surface-container-low": "#f6f3f2",
+                      "surface-container-lowest": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "unit": "8px",
+                      "gutter": "24px",
+                      "margin-mobile": "20px",
+                      "container-max": "1440px",
+                      "margin-desktop": "64px"
+              },
+              "fontFamily": {
+                      "headline-lg-mobile": [
+                              "Bodoni Moda"
+                      ],
+                      "headline-lg": [
+                              "Bodoni Moda"
+                      ],
+                      "body-md": [
+                              "Hanken Grotesk"
+                      ],
+                      "label-sm": [
+                              "Hanken Grotesk"
+                      ],
+                      "headline-md": [
+                              "Bodoni Moda"
+                      ],
+                      "body-lg": [
+                              "Hanken Grotesk"
+                      ],
+                      "label-md": [
+                              "Hanken Grotesk"
+                      ],
+                      "display-lg": [
+                              "Bodoni Moda"
+                      ]
+              },
+              "fontSize": {
+                      "headline-lg-mobile": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-lg": [
+                              "40px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-md": [
+                              "28px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "0.08em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg": [
+                              "64px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .filled-icon {
+          font-variation-settings: 'FILL' 1;
+        }
+        
+        /* Smooth scrolling */
+        html { scroll-behavior: smooth; }
+        
+        /* Custom scrollbar for high-end feel */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d0c5af; 
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #735c00; 
+        }
+
+        /* Glassmorphism utility */
+        .glass-panel {
+            background: rgba(252, 249, 248, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+      </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md antialiased min-h-screen flex selection:bg-primary-container selection:text-on-primary-container">
+<!-- SideNavBar -->
+<nav class="h-screen w-64 fixed left-0 top-0 bg-surface dark:bg-surface-dim z-50 flex flex-col py-base hidden md:flex border-r border-outline-variant/30">
+<div class="px-6 py-8 flex flex-col items-center border-b border-outline-variant/30">
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">Trimly</h1>
+<span class="font-label-sm text-label-sm text-secondary mt-2 tracking-[0.2em] uppercase">Lumière Atelier</span>
+</div>
+<div class="flex-1 overflow-y-auto py-6 px-4 space-y-2">
+<a class="flex items-center space-x-4 px-4 py-3 rounded-lg text-secondary dark:text-secondary-fixed hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-container dark:hover:bg-surface-container-high transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center space-x-4 px-4 py-3 rounded-lg text-secondary dark:text-secondary-fixed hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-container dark:hover:bg-surface-container-high transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<span>Appointments</span>
+</a>
+<a class="flex items-center space-x-4 px-4 py-3 rounded-lg text-secondary dark:text-secondary-fixed hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-container dark:hover:bg-surface-container-high transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span>Clients</span>
+</a>
+<a class="flex items-center space-x-4 px-4 py-3 rounded-lg text-primary dark:text-inverse-primary font-bold border-r-4 border-primary dark:border-primary-fixed bg-primary-container/10 transition-transform duration-150 scale-95 font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined filled-icon">campaign</span>
+<span>Marketing</span>
+</a>
+<a class="flex items-center space-x-4 px-4 py-3 rounded-lg text-secondary dark:text-secondary-fixed hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-container dark:hover:bg-surface-container-high transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span>Inventory</span>
+</a>
+<a class="flex items-center space-x-4 px-4 py-3 rounded-lg text-secondary dark:text-secondary-fixed hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-container dark:hover:bg-surface-container-high transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">bar_chart</span>
+<span>Reports</span>
+</a>
+<a class="flex items-center space-x-4 px-4 py-3 rounded-lg text-secondary dark:text-secondary-fixed hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-container dark:hover:bg-surface-container-high transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</a>
+</div>
+<div class="p-4 border-t border-outline-variant/30">
+<a class="flex items-center space-x-4 px-4 py-3 rounded-lg text-secondary dark:text-secondary-fixed hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-container dark:hover:bg-surface-container-high transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">help</span>
+<span>Help Center</span>
+</a>
+<button class="w-full mt-4 py-3 px-4 bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-container hover:text-on-primary-container transition-colors">
+                Support
+            </button>
+</div>
+</nav>
+<!-- Main Canvas -->
+<main class="flex-1 w-full md:ml-64 flex flex-col relative pb-24 md:pb-0">
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 w-full md:w-[calc(100%-256px)] h-16 bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-xl z-40 border-b border-outline-variant/30 flex justify-between items-center px-6 md:px-margin-desktop flat no shadows">
+<div class="flex items-center">
+<!-- Mobile Menu Button -->
+<button class="md:hidden mr-4 text-on-surface-variant">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="relative group hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors">search</span>
+<input class="pl-10 pr-4 py-2 bg-transparent border-b border-outline-variant focus:border-primary outline-none transition-colors w-64 font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant/50" placeholder="Search templates..." type="text"/>
+</div>
+</div>
+<div class="flex items-center space-x-6">
+<button class="hidden md:block py-2 px-6 bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-container hover:text-on-primary-container transition-colors">
+                    New Appointment
+                </button>
+<button class="text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-container-low dark:hover:bg-surface-container-highest rounded-lg p-2">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-container-low dark:hover:bg-surface-container-highest rounded-lg p-2">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Content Area -->
+<div class="pt-24 px-6 md:px-margin-desktop max-w-container-max mx-auto w-full">
+<!-- Page Header -->
+<div class="mb-16 md:mb-24 pt-8">
+<p class="font-label-md text-label-md text-secondary uppercase tracking-[0.15em] mb-4">Lumière Atelier Collection</p>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-6 max-w-3xl">The Template Marketplace</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">A curated selection of high-end digital showrooms designed exclusively for discerning salon owners. Elevate your brand with uncompromising aesthetics.</p>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-gutter pb-32">
+<!-- 1. Luxury Salon (Featured - Spans 12 cols or 8 depending on preference, let's make it span 12 for impact) -->
+<div class="col-span-1 md:col-span-12 group relative bg-surface-container-lowest border border-outline-variant/30 overflow-hidden min-h-[600px] flex flex-col md:flex-row items-center">
+<div class="w-full md:w-2/3 h-[300px] md:h-full relative overflow-hidden">
+<img alt="Luxury Salon Interior" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A sweeping, wide-angle shot of an ultra-luxurious hair salon interior bathed in soft, natural daylight. The space features minimalist architectural lines, polished concrete floors, and opulent gold accents against warm cream walls. Sleek, sculptural styling stations and plush, neutral-toned leather chairs are arranged with ample negative space, creating a serene, high-end lookbook aesthetic. The lighting is bright and airy, perfectly capturing the quiet luxury of the Lumière Atelier brand identity." src="https://lh3.googleusercontent.com/aida/AP1WRLt1pN4jUFC08D_Qp-YLTdFXA0vPOxTjOhh4iwLqc1wwzfob9kxnOCIzkGKTlU74IcCa0EKkAErPA0c2ICbf9A-hYxL2AoEU2X3NEFMSYV5SIR2NrztnhU6dZvp_47ZVsfteh6U-6ILHff4f87uZtmH1MUMEDEJmWCNzW5iIuOyaO1T3YSI5dWopdMVYad7UkgTuTyk8EkmJevm4l2ATdsCcmmRXFEE7AN3dK7cj22Xt3KHHf4mLlG08MBU"/>
+</div>
+<div class="w-full md:w-1/3 p-8 md:p-12 flex flex-col justify-center bg-surface-container-lowest z-10 relative">
+<span class="inline-block px-3 py-1 bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm mb-6 w-fit uppercase tracking-wider">Featured Flagship</span>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-4">L'Étoile Luxury</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8 line-clamp-3">Our premier flagship template. Designed for grand spaces and elite clientele, featuring sweeping galleries and comprehensive booking flows.</p>
+<div class="flex items-center space-x-6 mb-8 text-on-surface-variant border-t border-b border-outline-variant/30 py-4">
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md text-primary">6</span>
+<span class="font-label-sm text-label-sm uppercase">Pages</span>
+</div>
+<div class="h-8 w-[1px] bg-outline-variant/50"></div>
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md text-primary">18</span>
+<span class="font-label-sm text-label-sm uppercase">Sections</span>
+</div>
+</div>
+<ul class="space-y-3 mb-12 font-body-md text-body-md text-secondary">
+<li class="flex items-center"><span class="material-symbols-outlined text-primary mr-3 text-[18px]">check</span> Book Now Integrated</li>
+<li class="flex items-center"><span class="material-symbols-outlined text-primary mr-3 text-[18px]">check</span> Instagram Feed</li>
+<li class="flex items-center"><span class="material-symbols-outlined text-primary mr-3 text-[18px]">check</span> Service Menu Showcase</li>
+</ul>
+<div class="flex flex-col sm:flex-row gap-4 mt-auto">
+<button class="px-8 py-4 bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-container transition-colors w-full sm:w-auto text-center">Use Template</button>
+<button class="px-8 py-4 border border-outline text-on-surface font-label-md text-label-md hover:bg-surface-container-high transition-colors w-full sm:w-auto text-center">Preview</button>
+</div>
+</div>
+</div>
+<!-- 2. Beauty Studio (Col span 6) -->
+<div class="col-span-1 md:col-span-6 group relative bg-surface-container-lowest border border-outline-variant/30 overflow-hidden flex flex-col h-[500px]">
+<div class="w-full h-1/2 relative overflow-hidden">
+<img alt="Beauty Studio Aesthetic" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A close-up, soft-focus lifestyle shot of a minimalist beauty studio setup. Light filters through sheer curtains onto a pristine white marble counter holding high-end skincare bottles and a single delicate white floral stem. The color palette is strictly soft ivory, warm cream, and muted gold, embodying a serene, tactile refinement. The lighting is high-key and diffused, conveying an airy, sun-drenched aesthetic." src="https://lh3.googleusercontent.com/aida/AP1WRLtcBgFjyjBD9EUF8KJpaiiI0J_9-1xf2do6FaOSnVlaD4eDaA6TnDoEpAGZz1D6rcknEKFOkPftNFXGVlczc3Dxb4Wu0JqvvZ7yUDxhGqYWeoJywWqf-SNc3R4w7e2ogtcgiW0Wk6RbbybuxQd_ILt_zbAGUoGSnZIF008v8WXMcB2jFWMv-o8ObnqkstjGxGAGExpAyYVwEiSrfCL5pR_OwknO2Q1Jb9Jmx2PsDObxRjgJbM8vgfLNlcI"/>
+</div>
+<div class="p-8 flex flex-col flex-1">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Aura Studio</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">Soft, minimalist aesthetic perfect for intimate esthetician spaces.</p>
+<div class="flex gap-2 mb-6 flex-wrap">
+<span class="px-2 py-1 bg-surface-container text-secondary font-label-sm text-label-sm border border-outline-variant/20">6 Pages</span>
+<span class="px-2 py-1 bg-surface-container text-secondary font-label-sm text-label-sm border border-outline-variant/20">18 Sections</span>
+<span class="px-2 py-1 bg-surface-container text-secondary font-label-sm text-label-sm border border-outline-variant/20">Book Now</span>
+<span class="px-2 py-1 bg-surface-container text-secondary font-label-sm text-label-sm border border-outline-variant/20">IG Feed</span>
+</div>
+<div class="flex gap-4 mt-auto opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+<button class="flex-1 py-3 bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-container transition-colors">Use</button>
+<button class="flex-1 py-3 border border-outline text-on-surface font-label-md text-label-md hover:bg-surface-container-high transition-colors">Preview</button>
+</div>
+</div>
+</div>
+<!-- 3. Barber Shop (Col span 6) -->
+<div class="col-span-1 md:col-span-6 group relative bg-surface-container-lowest border border-outline-variant/30 overflow-hidden flex flex-col h-[500px]">
+<div class="w-full h-1/2 relative overflow-hidden">
+<img alt="Barber Shop Interior" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A sophisticated, high-end barbershop interior showcasing darker, masculine luxury while maintaining a clean, well-lit environment. Vintage leather chairs sit on dark hardwood floors, contrasted by stark white walls and minimalist brass fixtures. Natural light streams in from tall windows, softening the darker tones. The composition uses generous negative space, avoiding clutter to maintain a prestigious, curated lookbook feel." src="https://lh3.googleusercontent.com/aida/AP1WRLsS3hetD89gjIYKtyhw-KaUsVf_m8ifFWWmgNRCBmIBZ5N-ELGC09W0bhsbK967_itzlVKgZLJ6BuRuN1-zLdOO7tpi96fw2i4EzqpzkYBFFqU0IqcZuBrhDNWbLV_nVRQzbHNAH_lDSkx8rcHhJmO3HQ8VFEw6cV-IcVWCjn-KWX3QaMIQRn-KKWBW6FAGk75keosdEZGf8P2lL2lRHi8zHIjnuBpq5o5lz5RvxlTToT1pCtgJrVTN5A0"/>
+</div>
+<div class="p-8 flex flex-col flex-1">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">The Heritage</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">A darker, masculine luxury tailored for modern gentlemen's grooming.</p>
+<div class="flex gap-2 mb-6 flex-wrap">
+<span class="px-2 py-1 bg-surface-container text-secondary font-label-sm text-label-sm border border-outline-variant/20">6 Pages</span>
+<span class="px-2 py-1 bg-surface-container text-secondary font-label-sm text-label-sm border border-outline-variant/20">18 Sections</span>
+<span class="px-2 py-1 bg-surface-container text-secondary font-label-sm text-label-sm border border-outline-variant/20">Book Now</span>
+<span class="px-2 py-1 bg-surface-container text-secondary font-label-sm text-label-sm border border-outline-variant/20">Service Menu</span>
+</div>
+<div class="flex gap-4 mt-auto opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+<button class="flex-1 py-3 bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-container transition-colors">Use</button>
+<button class="flex-1 py-3 border border-outline text-on-surface font-label-md text-label-md hover:bg-surface-container-high transition-colors">Preview</button>
+</div>
+</div>
+</div>
+<!-- 4. Spa & Wellness (Col span 7 - Asymmetric) -->
+<div class="col-span-1 md:col-span-7 group relative bg-surface-container-lowest border border-outline-variant/30 overflow-hidden flex flex-col h-[500px]">
+<div class="w-full h-1/2 relative overflow-hidden">
+<img alt="Spa and Wellness Center" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A serene spa and wellness interior that embodies calm and clarity. A minimalist massage room bathed in diffused, ethereal light, featuring pale wood textures, a crisp white linen treatment bed, and subtle, indirect lighting. The atmosphere is tranquil and atmospheric, utilizing a palette of soft ivories and warm creams. The design avoids dark shadows, opting for a bright, floating sensation characteristic of a luxury sanctuary." src="https://lh3.googleusercontent.com/aida/AP1WRLsSB1SDZqq8E1l0vi_YOolPgAgx-GGi6Cdzfk6yTJ2NEna7oczIOqBSIAEFFQoScLT7e-0ze644z-bBdQ7hpHBEnJfMhR4AarjkHySQ2un_dK2oG4bP45rpY4tOxD0unceALvHCnbvE2SR0AsZa7A9bgpMiJiQAK-ZCh6IqxJD16HWULi7L5s8E9Lo1juSzEIuVlM-vhEgb4u4mCTKUsK1awQNah5_bmHJl6rp3vHF3jbh07ugqXzDiYBxb"/>
+</div>
+<div class="p-8 flex flex-col flex-1">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Sanctuary Spa</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">Serene, atmospheric layouts designed to induce calm before the client even arrives.</p>
+<div class="flex gap-2 mb-6 flex-wrap">
+<span class="px-2 py-1 bg-surface-container text-secondary font-label-sm text-label-sm border border-outline-variant/20">6 Pages</span>
+<span class="px-2 py-1 bg-surface-container text-secondary font-label-sm text-label-sm border border-outline-variant/20">18 Sections</span>
+<span class="px-2 py-1 bg-surface-container text-secondary font-label-sm text-label-sm border border-outline-variant/20">Book Now</span>
+<span class="px-2 py-1 bg-surface-container text-secondary font-label-sm text-label-sm border border-outline-variant/20">IG Feed</span>
+</div>
+<div class="flex gap-4 mt-auto opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+<button class="px-8 py-3 bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-container transition-colors w-fit">Use Template</button>
+<button class="px-8 py-3 border border-outline text-on-surface font-label-md text-label-md hover:bg-surface-container-high transition-colors w-fit">Preview</button>
+</div>
+</div>
+</div>
+<!-- 5. Aesthetic Clinic (Col span 5 - Asymmetric) -->
+<div class="col-span-1 md:col-span-5 group relative bg-surface-container-lowest border border-outline-variant/30 overflow-hidden flex flex-col h-[500px]">
+<div class="w-full h-1/2 relative overflow-hidden">
+<img alt="Aesthetic Clinic Setup" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A pristine, medical-grade luxury aesthetic clinic room. The space is blindingly clean but warm, featuring high-end clinical equipment alongside luxurious, tactile elements like brushed gold hardware and plush white seating. The environment is flooded with bright, high-key lighting, emphasizing the pure white and soft ivory palette. It feels less like a hospital and more like an exclusive, high-fashion scientific atelier." src="https://lh3.googleusercontent.com/aida/AP1WRLuL3trbhECd75Zo3o_RGvs2-m_R-rxJhIH_Wc4BeuGP6VjCVyF3aquinTZZ3eP1KTC5INuK3NL6Azcg87iYWMlnyfan7awAvBU5tionDLLU1SmjA9i8AvBgrUSv4b66bDzfKDhZ-0idgrSkqU8tUzU1K7upTwlcix0oIAItUO7i9x6OQUq5DRp_vKi0zksi6kpssd6LN-r7LtGAtD3r3YdIDDpQtzlfFuCYd6EjjVwLKLrldCT8EoN5r1gW"/>
+</div>
+<div class="p-8 flex flex-col flex-1">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Klinik</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">Clean, medical-grade luxury for advanced skin and aesthetic centers.</p>
+<div class="flex gap-2 mb-6 flex-wrap">
+<span class="px-2 py-1 bg-surface-container text-secondary font-label-sm text-label-sm border border-outline-variant/20">6 Pages</span>
+<span class="px-2 py-1 bg-surface-container text-secondary font-label-sm text-label-sm border border-outline-variant/20">18 Sections</span>
+<span class="px-2 py-1 bg-surface-container text-secondary font-label-sm text-label-sm border border-outline-variant/20">Service Menu</span>
+</div>
+<div class="flex gap-4 mt-auto opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+<button class="flex-1 py-3 bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-container transition-colors">Use</button>
+<button class="flex-1 py-3 border border-outline text-on-surface font-label-md text-label-md hover:bg-surface-container-high transition-colors">Preview</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Mobile Bottom Nav (Visible only on mobile) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full bg-surface/90 backdrop-blur-md border-t border-outline-variant/30 z-50 flex justify-around items-center h-16 px-4">
+<a class="flex flex-col items-center justify-center w-full h-full text-secondary hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[24px]">dashboard</span>
+<span class="font-label-sm text-[10px] mt-1">Dash</span>
+</a>
+<a class="flex flex-col items-center justify-center w-full h-full text-primary font-bold" href="#">
+<span class="material-symbols-outlined filled-icon text-[24px]">campaign</span>
+<span class="font-label-sm text-[10px] mt-1">Market</span>
+</a>
+<a class="flex flex-col items-center justify-center w-full h-full text-secondary hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[24px]">calendar_today</span>
+<span class="font-label-sm text-[10px] mt-1">Appts</span>
+</a>
+<a class="flex flex-col items-center justify-center w-full h-full text-secondary hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[24px]">settings</span>
+<span class="font-label-sm text-[10px] mt-1">Settings</span>
+</a>
+</nav>
+<script>
+        // Simple script to handle input focus styles for the search bar
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.querySelector('input[type="text"]');
+            const searchIcon = searchInput.previousElementSibling;
+
+            searchInput.addEventListener('focus', () => {
+                searchIcon.classList.remove('text-on-surface-variant');
+                searchIcon.classList.add('text-primary');
+            });
+
+            searchInput.addEventListener('blur', () => {
+                searchIcon.classList.add('text-on-surface-variant');
+                searchIcon.classList.remove('text-primary');
+            });
+        });
+    </script>
+</body></html>

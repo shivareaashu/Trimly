@@ -1,0 +1,45 @@
+export const MODULES = {
+  WEBSITE: "website",
+  BOOKINGS: "bookings",
+  STAFF: "staff",
+  SERVICES: "services",
+  CUSTOMERS: "customers",
+  PAYMENTS: "payments",
+  WHATSAPP: "whatsapp",
+  LOYALTY: "loyalty",
+  INVENTORY: "inventory",
+  POS: "pos",
+  ANALYTICS: "analytics",
+  MARKETING: "marketing",
+  BRANCHES: "branches",
+  PAYROLL: "payroll",
+  FINANCE: "finance",
+  ATTENDANCE: "attendance",
+};
+
+export const PLANS = {
+  STARTER: {
+    code: "starter",
+    name: "Starter Plan",
+    modules: [MODULES.WEBSITE, MODULES.BOOKINGS, MODULES.STAFF, MODULES.SERVICES, MODULES.CUSTOMERS, MODULES.ATTENDANCE]
+  },
+  GROWTH: {
+    code: "growth",
+    name: "Growth Plan",
+    modules: [
+      MODULES.WEBSITE, MODULES.BOOKINGS, MODULES.STAFF, MODULES.SERVICES, MODULES.CUSTOMERS,
+      MODULES.PAYMENTS, MODULES.WHATSAPP, MODULES.LOYALTY, MODULES.ANALYTICS,
+      MODULES.PAYROLL, MODULES.FINANCE, MODULES.ATTENDANCE
+    ]
+  },
+  PREMIUM: {
+    code: "premium",
+    name: "Premium Plan",
+    modules: [
+      MODULES.WEBSITE, MODULES.BOOKINGS, MODULES.STAFF, MODULES.SERVICES, MODULES.CUSTOMERS,
+      MODULES.PAYMENTS, MODULES.WHATSAPP, MODULES.LOYALTY, MODULES.ANALYTICS,
+      MODULES.INVENTORY, MODULES.POS, MODULES.BRANCHES, MODULES.MARKETING,
+      MODULES.PAYROLL, MODULES.FINANCE, MODULES.ATTENDANCE
+    ]
+  }
+};

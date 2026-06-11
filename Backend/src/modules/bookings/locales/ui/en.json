@@ -1,0 +1,8 @@
+{
+  "_version": 1,
+  "booking.select_service": "Select Service",
+  "booking.select_staff": "Select Staff",
+  "booking.select_date": "Select Date",
+  "booking.select_slot": "Select Time Slot",
+  "booking.confirm": "Confirm Booking"
+}

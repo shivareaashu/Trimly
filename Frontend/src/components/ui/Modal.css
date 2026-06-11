@@ -1,0 +1,229 @@
+.acczite-modal-overlay {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 9000 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 24px;
+  pointer-events: auto;
+}
+
+.acczite-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  z-index: -1;
+}
+
+.acczite-modal-container {
+  background: #ffffff;
+  border-radius: 16px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+  width: 100%;
+  box-shadow: 0 18px 44px rgba(15, 23, 42, 0.22);
+  border: 1px solid #e5e7eb;
+  animation: modalFade 0.18s ease-out;
+  overflow: visible;
+}
+
+.acczite-modal-width-sm {
+  max-width: 440px;
+}
+
+.acczite-modal-width-md {
+  max-width: 680px;
+}
+
+.acczite-modal-width-lg {
+  max-width: 900px;
+}
+
+.acczite-modal-width-xl {
+  max-width: 1200px;
+}
+
+.acczite-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  border-bottom: 1px solid #e5e7eb;
+  flex-shrink: 0;
+}
+
+.acczite-modal-header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+}
+
+.acczite-modal-icon-box {
+  width: 44px;
+  height: 44px;
+  background: #fffbeb;
+  color: #735c00;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 1px solid #ead9a2;
+}
+
+.acczite-modal-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.acczite-modal-top-label {
+  font-size: 10px;
+  font-weight: 800;
+  color: #94a3b8;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.acczite-modal-title {
+  font-size: 18px;
+  font-weight: 650;
+  color: #1f2937;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+}
+
+.acczite-modal-subtitle {
+  font-size: 12px;
+  color: #64748b;
+  margin: 2px 0 0;
+}
+
+.acczite-modal-dismiss-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1.25rem;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #6b7280;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.acczite-modal-dismiss-btn:hover {
+  color: #0f172a;
+  transform: rotate(90deg);
+}
+
+.acczite-modal-body {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: visible;
+  scrollbar-width: thin;
+  scrollbar-color: #e2e8f0 transparent;
+}
+
+.acczite-modal-body-padding {
+  padding: 32px;
+}
+
+.acczite-modal-body-padding-sm {
+  padding: 20px;
+}
+
+.acczite-modal-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.acczite-modal-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.acczite-modal-body::-webkit-scrollbar-thumb {
+  background: #e2e8f0;
+  border-radius: 10px;
+}
+
+.acczite-modal-body::-webkit-scrollbar-thumb:hover {
+  background: #cbd5e1;
+}
+
+@keyframes modalFade {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@media (max-width: 640px) {
+  .acczite-modal-overlay {
+    align-items: stretch !important;
+    justify-content: center !important;
+    padding: 8px !important;
+  }
+
+  .acczite-modal-container {
+    max-width: 100% !important;
+    max-height: calc(100vh - 16px) !important;
+    width: 100% !important;
+    border-radius: 14px;
+  }
+
+  .acczite-modal-header {
+    align-items: flex-start;
+    padding: 14px 48px 14px 16px;
+  }
+
+  .acczite-modal-header-left {
+    gap: 12px;
+  }
+
+  .acczite-modal-icon-box {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+  }
+
+  .acczite-modal-title {
+    font-size: 16px;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .acczite-modal-dismiss-btn {
+    right: 10px;
+    top: 10px;
+  }
+
+  .acczite-modal-body-padding {
+    padding: 16px;
+  }
+
+  .acczite-modal-body-padding-sm {
+    padding: 12px;
+  }
+}

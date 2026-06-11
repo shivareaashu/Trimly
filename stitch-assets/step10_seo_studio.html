@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Trimly Atelier - SEO Studio</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&amp;family=Bodoni+Moda:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@100..900&amp;family=Hanken+Grotesk:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline": "#7f7663",
+                        "on-primary-fixed": "#241a00",
+                        "on-surface-variant": "#4d4635",
+                        "surface": "#fcf9f8",
+                        "inverse-on-surface": "#f3f0ef",
+                        "surface-dim": "#dcd9d9",
+                        "tertiary-container": "#b3b3af",
+                        "surface-variant": "#e5e2e1",
+                        "surface-container-highest": "#e5e2e1",
+                        "primary-fixed-dim": "#e9c349",
+                        "tertiary": "#5e5f5c",
+                        "on-secondary-fixed-variant": "#464744",
+                        "on-secondary-fixed": "#1b1c19",
+                        "on-primary": "#ffffff",
+                        "surface-container-high": "#eae7e7",
+                        "surface-container-low": "#f6f3f2",
+                        "on-tertiary-container": "#444543",
+                        "on-tertiary": "#ffffff",
+                        "surface-tint": "#735c00",
+                        "background": "#fcf9f8",
+                        "primary-container": "#d4af37",
+                        "inverse-surface": "#313030",
+                        "inverse-primary": "#e9c349",
+                        "primary": "#735c00",
+                        "secondary-fixed-dim": "#c7c7c2",
+                        "tertiary-fixed": "#e3e2de",
+                        "secondary": "#5e5f5b",
+                        "tertiary-fixed-dim": "#c7c6c3",
+                        "on-tertiary-fixed-variant": "#464744",
+                        "on-secondary-container": "#646561",
+                        "on-tertiary-fixed": "#1b1c1a",
+                        "on-surface": "#1c1b1b",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed": "#e3e3de",
+                        "error": "#ba1a1a",
+                        "on-primary-container": "#554300",
+                        "outline-variant": "#d0c5af",
+                        "error-container": "#ffdad6",
+                        "surface-container": "#f0eded",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "primary-fixed": "#ffe088",
+                        "on-background": "#1c1b1b",
+                        "surface-bright": "#fcf9f8",
+                        "secondary-container": "#e3e3de",
+                        "on-primary-fixed-variant": "#574500",
+                        "surface-container-lowest": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "unit": "8px",
+                        "container-max": "1440px",
+                        "margin-mobile": "20px",
+                        "margin-desktop": "64px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Hanken Grotesk"],
+                        "headline-lg": ["Bodoni Moda"],
+                        "headline-lg-mobile": ["Bodoni Moda"],
+                        "display-lg": ["Bodoni Moda"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "headline-md": ["Bodoni Moda"],
+                        "body-md": ["Hanken Grotesk"],
+                        "label-sm": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", { "lineHeight": "1.2", "letterSpacing": "0.08em", "fontWeight": "600" }],
+                        "headline-lg": ["40px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "500" }],
+                        "display-lg": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "letterSpacing": "0.01em", "fontWeight": "400" }],
+                        "headline-md": ["28px", { "lineHeight": "1.3", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(252, 249, 248, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .ambient-shadow {
+            box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.04);
+        }
+        /* Custom Scrollbar for a cleaner look */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #e5e2e1;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #dcd9d9;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex selection:bg-primary-container selection:text-on-primary-container">
+<!-- SideNavBar (Suppressed as this is a linear/transactional setup step) -->
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col h-screen overflow-y-auto w-full relative">
+<!-- TopAppBar Contextual Header (Suppressed main nav, simplified for setup flow) -->
+<header class="bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-xl docked full-width top-0 shadow-sm border-b border-outline-variant/30 sticky z-50 flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto h-20 transition-all">
+<div class="flex items-center gap-4">
+<button aria-label="Go Back" class="text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center p-2 rounded-full hover:bg-surface-container-low">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<div>
+<h1 class="font-display-lg text-headline-md font-bold text-primary dark:text-primary-fixed tracking-tight">Trimly</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mt-1">Step 10 of 13</p>
+</div>
+</div>
+<div>
+<button class="font-label-md text-label-md text-on-surface-variant hover:text-primary px-4 py-2 transition-colors">Save &amp; Exit</button>
+</div>
+</header>
+<!-- Canvas -->
+<div class="flex-1 w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12 md:py-24">
+<div class="max-w-4xl mx-auto">
+<!-- Header Section -->
+<div class="mb-16 text-center md:text-left">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-4">SEO Studio</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Ensure your atelier is easily discovered by discerning clients. Refine how your salon appears in search engines with elegant, precise details.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+<!-- Left Column: Inputs (8 cols) -->
+<div class="lg:col-span-7 space-y-12">
+<!-- Basics Card -->
+<div class="bg-on-primary border border-surface-container-highest rounded-xl p-8 transition-shadow hover:ambient-shadow">
+<h3 class="font-headline-md text-body-lg text-on-surface mb-6 border-b border-surface-container-high pb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-outline" data-icon="edit_document">edit_document</span>
+                                Core Information
+                            </h3>
+<div class="space-y-8">
+<!-- Title Input -->
+<div class="relative group">
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-2 uppercase tracking-wider" for="meta-title">Meta Title</label>
+<input class="w-full bg-transparent border-0 border-b border-surface-variant focus:border-primary focus:ring-0 px-0 py-3 font-body-lg text-on-surface transition-colors placeholder:text-outline-variant" id="meta-title" placeholder="e.g., Elegance Hair Studio | Luxury Cuts" type="text" value="Trimly Atelier | Premium Salon &amp; Spa"/>
+<div class="flex justify-end mt-2">
+<span class="font-label-sm text-label-sm text-outline-variant">36 / 60 characters</span>
+</div>
+</div>
+<!-- Description Input -->
+<div class="relative group">
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-2 uppercase tracking-wider" for="meta-desc">Meta Description</label>
+<textarea class="w-full bg-transparent border-0 border-b border-surface-variant focus:border-primary focus:ring-0 px-0 py-3 font-body-md text-on-surface transition-colors placeholder:text-outline-variant resize-none" id="meta-desc" placeholder="Describe your salon's unique experience..." rows="3"></textarea>
+<div class="flex justify-end mt-2">
+<span class="font-label-sm text-label-sm text-outline-variant">0 / 160 characters</span>
+</div>
+</div>
+<!-- Keywords -->
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-3 uppercase tracking-wider">Keywords</label>
+<div class="flex flex-wrap gap-2 mb-3">
+<div class="bg-surface-container-low border border-surface-variant px-3 py-1.5 rounded-full flex items-center gap-2">
+<span class="font-label-sm text-label-sm text-on-surface">Luxury Salon</span>
+<button class="text-outline-variant hover:text-error transition-colors"><span class="material-symbols-outlined text-[16px]" data-icon="close">close</span></button>
+</div>
+<div class="bg-surface-container-low border border-surface-variant px-3 py-1.5 rounded-full flex items-center gap-2">
+<span class="font-label-sm text-label-sm text-on-surface">Hair Styling</span>
+<button class="text-outline-variant hover:text-error transition-colors"><span class="material-symbols-outlined text-[16px]" data-icon="close">close</span></button>
+</div>
+</div>
+<input class="w-full bg-transparent border-0 border-b border-surface-variant focus:border-primary focus:ring-0 px-0 py-2 font-body-md text-on-surface transition-colors placeholder:text-outline-variant" placeholder="Add keyword and press enter..." type="text"/>
+</div>
+</div>
+</div>
+<!-- Visual Assets Card -->
+<div class="bg-on-primary border border-surface-container-highest rounded-xl p-8 transition-shadow hover:ambient-shadow">
+<div class="flex justify-between items-center border-b border-surface-container-high pb-4 mb-6">
+<h3 class="font-headline-md text-body-lg text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-outline" data-icon="image">image</span>
+                                    Social Preview Image (OG Image)
+                                </h3>
+<span class="bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm px-2 py-1 rounded">1200 x 630px recommended</span>
+</div>
+<div class="mt-4 flex justify-center rounded-lg border border-dashed border-surface-variant px-6 py-12 hover:bg-surface-container-low transition-colors cursor-pointer group">
+<div class="text-center">
+<span class="material-symbols-outlined text-4xl text-outline-variant group-hover:text-primary transition-colors mb-4" data-icon="cloud_upload">cloud_upload</span>
+<div class="mt-4 flex text-sm leading-6 text-on-surface-variant justify-center">
+<label class="relative cursor-pointer rounded-md bg-transparent font-semibold text-primary focus-within:outline-none focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-2 hover:text-primary-container" for="file-upload">
+<span>Upload a file</span>
+<input class="sr-only" id="file-upload" name="file-upload" type="file"/>
+</label>
+<p class="pl-1">or drag and drop</p>
+</div>
+<p class="text-xs leading-5 text-outline mt-2">PNG, JPG, GIF up to 10MB</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Preview & Score (4 cols) -->
+<div class="lg:col-span-5 space-y-8">
+<!-- SEO Health Score -->
+<div class="bg-surface-container-low rounded-xl p-6 border border-surface-container-highest">
+<h4 class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="health_metrics">health_metrics</span>
+                                SEO Health Score
+                            </h4>
+<div class="flex items-center gap-6">
+<div class="relative w-24 h-24 flex items-center justify-center">
+<!-- Simple SVG Circle for meter -->
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 36 36">
+<path class="text-surface-variant" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3"></path>
+<path class="text-primary-container transition-all duration-1000 ease-out" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="65, 100" stroke-width="3"></path>
+</svg>
+<div class="absolute flex flex-col items-center">
+<span class="font-headline-lg text-[24px] text-on-surface">65</span>
+</div>
+</div>
+<div class="flex-1 space-y-2">
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-[16px] text-error mt-0.5" data-icon="error">error</span>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Description is missing.</p>
+</div>
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-[16px] text-primary-container mt-0.5" data-icon="check_circle">check_circle</span>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Title length is optimal.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Google Preview -->
+<div class="bg-on-primary border border-surface-container-highest rounded-xl p-6 ambient-shadow sticky top-28">
+<div class="flex items-center justify-between mb-4 border-b border-surface-container-high pb-4">
+<h4 class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="travel_explore">travel_explore</span>
+                                    Search Preview
+                                </h4>
+<div class="flex gap-2">
+<button class="p-1 text-primary bg-surface-container-low rounded"><span class="material-symbols-outlined text-[18px]" data-icon="desktop_windows">desktop_windows</span></button>
+<button class="p-1 text-outline-variant hover:text-on-surface transition-colors rounded"><span class="material-symbols-outlined text-[18px]" data-icon="smartphone">smartphone</span></button>
+</div>
+</div>
+<!-- Mock Google Search Result -->
+<div class="bg-[#ffffff] rounded-lg p-4 font-sans border border-surface-variant/50">
+<div class="flex items-center gap-3 mb-1">
+<div class="w-7 h-7 rounded-full bg-surface-container-high flex items-center justify-center text-xs text-on-surface-variant font-bold">T</div>
+<div class="flex flex-col">
+<span class="text-[#202124] text-[14px] leading-tight">Trimly Atelier</span>
+<span class="text-[#4d5156] text-[12px] leading-tight">https://trimlyatelier.com</span>
+</div>
+</div>
+<h3 class="text-[#1a0dab] text-[20px] font-normal cursor-pointer hover:underline mb-1 truncate">Trimly Atelier | Premium Salon &amp; Spa</h3>
+<p class="text-[#4d5156] text-[14px] leading-[1.58] line-clamp-2">
+<span class="text-outline-variant italic">Provide a meta description to see how your salon will be presented to potential clients searching for your services...</span>
+</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Navigation Actions -->
+<div class="mt-16 pt-8 border-t border-surface-container-high flex justify-between items-center">
+<button class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors flex items-center gap-2 px-4 py-2">
+<span class="material-symbols-outlined text-[20px]" data-icon="arrow_back">arrow_back</span>
+                        Previous Step
+                    </button>
+<button class="bg-primary-container text-on-primary-container font-label-md text-label-md px-8 py-4 rounded hover:bg-primary-fixed transition-colors flex items-center gap-2">
+                        Continue to Launch
+                        <span class="material-symbols-outlined text-[20px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<script>
+        // Simple script to update character counts
+        document.getElementById('meta-title').addEventListener('input', function() {
+            // Logic would go here in real app
+        });
+        document.getElementById('meta-desc').addEventListener('input', function() {
+            // Logic would go here in real app
+        });
+    </script>
+</body></html>

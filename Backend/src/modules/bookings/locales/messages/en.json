@@ -1,0 +1,6 @@
+{
+  "_version": 1,
+  "booking.confirmed": "Hi {customerName}, your booking at {salonName} is confirmed for {time} with {staffName}. We look forward to seeing you!",
+  "booking.reminder": "Reminder: Hi {customerName}, you have an appointment tomorrow at {time} with {staffName} at {salonName}.",
+  "booking.thankyou": "Hi {customerName}, thank you for visiting {salonName} today! We hope you loved your service."
+}

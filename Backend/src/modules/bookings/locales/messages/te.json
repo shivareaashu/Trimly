@@ -1,0 +1,6 @@
+{
+  "_version": 1,
+  "booking.confirmed": "నమస్కారం {customerName}, {salonName} లో {staffName} తో {time} గంటలకు మీ బుకింగ్ ఖరారైంది. మీ రాక కోసం ఎదురుచూస్తున్నాము!",
+  "booking.reminder": "రిమైండర్: నమస్కారం {customerName}, రేపు {time} గంటలకు {salonName} లో {staffName} తో మీ అపాయింట్‌మెంట్ ఉంది.",
+  "booking.thankyou": "నమస్కారం {customerName}, ఈ రోజు {salonName} సందర్శించినందుకు ధన్యవాదాలు! మా సేవలు మీకు నచ్చాయని ఆశిస్తున్నాము."
+}

@@ -1,0 +1,3 @@
+export const ANALYTICS_CONFIG = {
+  INACTIVE_CLIENT_DAYS: 90,
+};

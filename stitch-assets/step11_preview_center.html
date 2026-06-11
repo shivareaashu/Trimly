@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Trimly Atelier - Preview Center</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&amp;family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline": "#7f7663",
+                        "on-primary-fixed": "#241a00",
+                        "on-surface-variant": "#4d4635",
+                        "surface": "#fcf9f8",
+                        "inverse-on-surface": "#f3f0ef",
+                        "surface-dim": "#dcd9d9",
+                        "tertiary-container": "#b3b3af",
+                        "surface-variant": "#e5e2e1",
+                        "surface-container-highest": "#e5e2e1",
+                        "primary-fixed-dim": "#e9c349",
+                        "tertiary": "#5e5f5c",
+                        "on-secondary-fixed-variant": "#464744",
+                        "on-secondary-fixed": "#1b1c19",
+                        "on-primary": "#ffffff",
+                        "surface-container-high": "#eae7e7",
+                        "surface-container-low": "#f6f3f2",
+                        "on-tertiary-container": "#444543",
+                        "on-tertiary": "#ffffff",
+                        "surface-tint": "#735c00",
+                        "background": "#fcf9f8",
+                        "primary-container": "#d4af37",
+                        "inverse-surface": "#313030",
+                        "inverse-primary": "#e9c349",
+                        "primary": "#735c00",
+                        "secondary-fixed-dim": "#c7c7c2",
+                        "tertiary-fixed": "#e3e2de",
+                        "secondary": "#5e5f5b",
+                        "tertiary-fixed-dim": "#c7c6c3",
+                        "on-tertiary-fixed-variant": "#464744",
+                        "on-secondary-container": "#646561",
+                        "on-tertiary-fixed": "#1b1c1a",
+                        "on-surface": "#1c1b1b",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed": "#e3e3de",
+                        "error": "#ba1a1a",
+                        "on-primary-container": "#554300",
+                        "outline-variant": "#d0c5af",
+                        "error-container": "#ffdad6",
+                        "surface-container": "#f0eded",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "primary-fixed": "#ffe088",
+                        "on-background": "#1c1b1b",
+                        "surface-bright": "#fcf9f8",
+                        "secondary-container": "#e3e3de",
+                        "on-primary-fixed-variant": "#574500",
+                        "surface-container-lowest": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "unit": "8px",
+                        "container-max": "1440px",
+                        "margin-mobile": "20px",
+                        "margin-desktop": "64px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Hanken Grotesk"],
+                        "headline-lg": ["Bodoni Moda"],
+                        "headline-lg-mobile": ["Bodoni Moda"],
+                        "display-lg": ["Bodoni Moda"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "headline-md": ["Bodoni Moda"],
+                        "body-md": ["Hanken Grotesk"],
+                        "label-sm": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", { "lineHeight": "1.2", "letterSpacing": "0.08em", "fontWeight": "600" }],
+                        "headline-lg": ["40px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "500" }],
+                        "display-lg": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "letterSpacing": "0.01em", "fontWeight": "400" }],
+                        "headline-md": ["28px", { "lineHeight": "1.3", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .device-shadow {
+            box-shadow: 0px 40px 80px rgba(0, 0, 0, 0.08);
+        }
+        .backdrop-blur-custom {
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased min-h-screen flex flex-col overflow-hidden relative">
+<!-- Decorative Blurred Backdrop -->
+<div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+<div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-surface-variant rounded-full mix-blend-multiply filter blur-[100px] opacity-50"></div>
+<div class="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] bg-surface-container-high rounded-full mix-blend-multiply filter blur-[120px] opacity-60"></div>
+</div>
+<!-- Top Toolbar (Canvas Navigation/Actions) -->
+<header class="relative z-20 flex justify-between items-center w-full px-container-padding-desktop max-w-container-max mx-auto h-20 bg-surface/80 backdrop-blur-xl border-b border-outline-variant/30 shadow-sm px-6 md:px-margin-desktop">
+<div class="flex items-center gap-4">
+<button aria-label="Go Back" class="text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center w-10 h-10 rounded-full hover:bg-surface-container-low">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">arrow_back</span>
+</button>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Step 11 of 13</span>
+<h1 class="font-headline-md text-headline-md text-primary">Preview Center</h1>
+</div>
+</div>
+<!-- Device Toggles -->
+<div class="hidden md:flex items-center bg-surface-container-low p-1 rounded-full border border-outline-variant/20">
+<button class="flex items-center gap-2 px-4 py-2 rounded-full bg-surface shadow-sm border border-outline-variant/10 text-primary font-label-sm text-label-sm transition-all" id="btn-desktop" onclick="setDevice('desktop')">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">desktop_mac</span>
+                Desktop
+            </button>
+<button class="flex items-center gap-2 px-4 py-2 rounded-full text-on-surface-variant hover:text-primary font-label-sm text-label-sm transition-all" id="btn-tablet" onclick="setDevice('tablet')">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">tablet_mac</span>
+                Tablet
+            </button>
+<button class="flex items-center gap-2 px-4 py-2 rounded-full text-on-surface-variant hover:text-primary font-label-sm text-label-sm transition-all" id="btn-mobile" onclick="setDevice('mobile')">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">smartphone</span>
+                Mobile
+            </button>
+</div>
+<div class="flex items-center gap-4">
+<button class="hidden lg:flex items-center gap-2 px-4 py-2 rounded-full border border-outline text-on-surface font-label-md text-label-md hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">qr_code_scanner</span>
+                Scan QR Code
+            </button>
+<button class="flex items-center gap-2 px-6 py-3 rounded-full bg-primary-container text-on-primary-container font-label-md text-label-md hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">link</span>
+                Copy Link
+            </button>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="relative z-10 flex-1 flex flex-col items-center justify-center p-6 md:p-12 overflow-hidden bg-transparent">
+<!-- Device Frame Container -->
+<div class="relative transition-all duration-500 ease-in-out flex items-center justify-center w-full h-full max-h-[800px]" id="device-container">
+<!-- The Mockup Frame (Defaults to Desktop) -->
+<div class="relative bg-surface rounded-xl overflow-hidden border border-outline-variant/20 device-shadow transition-all duration-500 ease-in-out w-full max-w-[1200px] h-[700px]" id="device-frame">
+<!-- Browser/Device Header Bar -->
+<div class="h-12 bg-surface-container-low border-b border-outline-variant/20 flex items-center px-4 gap-2" id="browser-bar">
+<div class="w-3 h-3 rounded-full bg-surface-variant border border-outline-variant/30"></div>
+<div class="w-3 h-3 rounded-full bg-surface-variant border border-outline-variant/30"></div>
+<div class="w-3 h-3 rounded-full bg-surface-variant border border-outline-variant/30"></div>
+<div class="flex-1 ml-4 mr-12 bg-surface rounded-md h-7 border border-outline-variant/10 flex items-center px-3 justify-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant/50">trimly-atelier.com/preview</span>
+</div>
+</div>
+<!-- Iframe / Website Content Simulation -->
+<div class="w-full h-[calc(100%-3rem)] bg-white relative overflow-y-auto">
+<!-- Faux Website Content -->
+<div class="w-full relative h-[800px] bg-cover bg-center" data-alt="A luxurious, sun-drenched salon interior with warm natural lighting, minimalist styling, high-end styling chairs, and large mirrors. The aesthetic is modern, airy, and sophisticated, reflecting a premium atelier look with soft ivory and cream tones." style="background-image: url('https://lh3.googleusercontent.com/aida/AP1WRLvBDsbwgsuBi90b3nK6Frz6ayDBkZVdWxjuotgWPqzdZ8V7_WtH1Qq0kX8kjMEPUJFQ27YEo8zCpO-LPQdO6g53CbTp2xWaxpdDkpEDpSnVSy65TXWvsnXInm5vnMr55-XdlqGZ7x2uXSr17UcEg9GfeyE40sY4C0agocIgqwiYQMpPjlQTwgmNUq40Cdj2ArLJdGi6rv97wfddgYWNQ5_N7OGRniMf0Fqd-WXs8OS3RwYy-Vtwrb8Qh2Js');">
+<div class="absolute inset-0 bg-black/20 flex flex-col items-center justify-center text-center px-8">
+<h2 class="font-display-lg text-display-lg text-white mb-6">Maison Lumière</h2>
+<p class="font-body-lg text-body-lg text-white/90 max-w-lg mb-8">Elevating your personal style in a space designed for tranquility and precision.</p>
+<button class="px-8 py-4 bg-white text-black font-label-md text-label-md rounded-none tracking-widest uppercase hover:bg-white/90 transition-colors">Book Consultation</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Navigation for Step Flow -->
+<div class="absolute bottom-0 left-0 w-full p-6 md:px-margin-desktop flex justify-between items-center bg-gradient-to-t from-surface to-transparent">
+<button class="px-6 py-3 rounded-full border border-outline text-on-surface font-label-md text-label-md hover:bg-surface-container-low transition-colors">
+                Back
+            </button>
+<button class="px-8 py-3 rounded-full bg-primary-container text-on-primary-container font-label-md text-label-md hover:opacity-90 transition-opacity">
+                Publish Site
+            </button>
+</div>
+</main>
+<script>
+        function setDevice(type) {
+            const container = document.getElementById('device-frame');
+            const browserBar = document.getElementById('browser-bar');
+            
+            // Reset buttons
+            document.querySelectorAll('[id^="btn-"]').forEach(btn => {
+                btn.classList.remove('bg-surface', 'shadow-sm', 'border-outline-variant/10', 'text-primary');
+                btn.classList.add('text-on-surface-variant');
+            });
+
+            // Set active button
+            const activeBtn = document.getElementById(`btn-${type}`);
+            activeBtn.classList.add('bg-surface', 'shadow-sm', 'border-outline-variant/10', 'text-primary');
+            activeBtn.classList.remove('text-on-surface-variant');
+
+            // Apply device dimensions
+            if (type === 'desktop') {
+                container.style.maxWidth = '1200px';
+                container.style.height = '700px';
+                container.style.borderRadius = '0.75rem';
+                browserBar.style.display = 'flex';
+            } else if (type === 'tablet') {
+                container.style.maxWidth = '768px';
+                container.style.height = '800px';
+                container.style.borderRadius = '1.5rem';
+                browserBar.style.display = 'none';
+            } else if (type === 'mobile') {
+                container.style.maxWidth = '375px';
+                container.style.height = '812px';
+                container.style.borderRadius = '2.5rem';
+                browserBar.style.display = 'none';
+            }
+        }
+    </script>
+</body></html>

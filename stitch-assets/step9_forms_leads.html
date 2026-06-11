@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Forms &amp; Leads Dashboard - Trimly Atelier</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&amp;family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline": "#7f7663",
+                        "on-primary-fixed": "#241a00",
+                        "on-surface-variant": "#4d4635",
+                        "surface": "#fcf9f8",
+                        "inverse-on-surface": "#f3f0ef",
+                        "surface-dim": "#dcd9d9",
+                        "tertiary-container": "#b3b3af",
+                        "surface-variant": "#e5e2e1",
+                        "surface-container-highest": "#e5e2e1",
+                        "primary-fixed-dim": "#e9c349",
+                        "tertiary": "#5e5f5c",
+                        "on-secondary-fixed-variant": "#464744",
+                        "on-secondary-fixed": "#1b1c19",
+                        "on-primary": "#ffffff",
+                        "surface-container-high": "#eae7e7",
+                        "surface-container-low": "#f6f3f2",
+                        "on-tertiary-container": "#444543",
+                        "on-tertiary": "#ffffff",
+                        "surface-tint": "#735c00",
+                        "background": "#fcf9f8",
+                        "primary-container": "#d4af37",
+                        "inverse-surface": "#313030",
+                        "inverse-primary": "#e9c349",
+                        "primary": "#735c00",
+                        "secondary-fixed-dim": "#c7c7c2",
+                        "tertiary-fixed": "#e3e2de",
+                        "secondary": "#5e5f5b",
+                        "tertiary-fixed-dim": "#c7c6c3",
+                        "on-tertiary-fixed-variant": "#464744",
+                        "on-secondary-container": "#646561",
+                        "on-tertiary-fixed": "#1b1c1a",
+                        "on-surface": "#1c1b1b",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed": "#e3e3de",
+                        "error": "#ba1a1a",
+                        "on-primary-container": "#554300",
+                        "outline-variant": "#d0c5af",
+                        "error-container": "#ffdad6",
+                        "surface-container": "#f0eded",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "primary-fixed": "#ffe088",
+                        "on-background": "#1c1b1b",
+                        "surface-bright": "#fcf9f8",
+                        "secondary-container": "#e3e3de",
+                        "on-primary-fixed-variant": "#574500",
+                        "surface-container-lowest": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "unit": "8px",
+                        "container-max": "1440px",
+                        "margin-mobile": "20px",
+                        "margin-desktop": "64px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Hanken Grotesk"],
+                        "headline-lg": ["Bodoni Moda"],
+                        "headline-lg-mobile": ["Bodoni Moda"],
+                        "display-lg": ["Bodoni Moda"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "headline-md": ["Bodoni Moda"],
+                        "body-md": ["Hanken Grotesk"],
+                        "label-sm": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", { "lineHeight": "1.2", "letterSpacing": "0.08em", "fontWeight": "600" }],
+                        "headline-lg": ["40px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "500" }],
+                        "display-lg": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "letterSpacing": "0.01em", "fontWeight": "400" }],
+                        "headline-md": ["28px", { "lineHeight": "1.3", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-effect {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.filled {
+            font-variation-settings: 'FILL' 1, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex antialiased">
+<!-- SideNavBar (from JSON) -->
+<aside class="hidden md:flex flex-col h-full p-gutter bg-surface-container-lowest dark:bg-inverse-surface text-primary dark:text-primary-fixed-dim font-body-md text-body-md docked full-height left-0 w-64 border-r border-outline-variant/20 flat no shadows fixed z-20">
+<div class="mb-12">
+<h1 class="font-display-lg text-headline-md text-primary tracking-tight">Trimly Atelier</h1>
+</div>
+<nav class="flex-1 flex flex-col gap-2">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">calendar_month</span>
+                Appointments
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">group</span>
+                Clients
+            </a>
+<!-- Active State -->
+<a class="flex items-center gap-3 px-4 py-3 bg-primary-container text-on-primary-container rounded-lg font-bold scale-98 transition-all" href="#">
+<span class="material-symbols-outlined filled">campaign</span>
+                Marketing
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+                Settings
+            </a>
+</nav>
+<div class="mt-auto pt-8 border-t border-outline-variant/20">
+<button class="w-full bg-primary-container text-on-primary-container font-label-md text-label-md py-3 rounded-DEFAULT mb-6 hover:opacity-90 transition-opacity">
+                New Appointment
+            </button>
+<div class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">help</span>
+                    Support
+                </a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">logout</span>
+                    Log Out
+                </a>
+</div>
+<div class="mt-6 flex items-center gap-3 px-4">
+<img alt="Trimly Atelier Admin" class="w-10 h-10 rounded-full object-cover border border-outline-variant" data-alt="A close-up portrait of a sophisticated woman with natural makeup and elegant styling. She exudes a sense of calm professionalism, fitting for a luxury salon creative director. The lighting is soft and flattering, highlighting her features against a neutral, bright background consistent with a high-end, light-mode aesthetic." src="https://lh3.googleusercontent.com/aida/AP1WRLvRPhTz48NoI7MmiQraKZMrYBOzIRVoOagA7tiYTDDLZCAymP3BIbFcIh5YKXEYBksJcUVV2JUUiPJkmqBn8UTRrK6r9OSduEYaGSsMwLs-80OVQCzjb-js7heYZ7emxbpfn8PWe6JrcDiLozH-tyTG71sciPTOBgVL1eh5fzqLzndtoKlcrR60a3olwhPBd0hZGkkgr1TFz7oRIB71sWap3vfPM-Cy15FIJr5GYqeqTKgrIqwkmMxKO31S"/>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Trimly Atelier</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Premium Management</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-64 bg-surface min-h-screen">
+<!-- Header area -->
+<header class="px-margin-mobile md:px-margin-desktop py-12 md:py-16 border-b border-outline-variant/30 bg-surface/80 glass-effect sticky top-0 z-10">
+<div class="max-w-container-max mx-auto flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-2">Conversion Hub</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Manage your pipeline, track submissions, and nurture high-value leads.</p>
+</div>
+<!-- Quick Actions -->
+<div class="flex gap-4">
+<button class="px-6 py-3 border border-outline text-on-surface font-label-md text-label-md hover:bg-surface-variant/30 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined">download</span>
+                        Export
+                    </button>
+<button class="px-6 py-3 bg-primary-container text-on-primary-container font-label-md text-label-md hover:opacity-90 transition-opacity flex items-center gap-2">
+<span class="material-symbols-outlined">add</span>
+                        New Lead
+                    </button>
+</div>
+</div>
+<!-- Tabs -->
+<div class="max-w-container-max mx-auto mt-8 flex gap-8 border-b border-outline-variant/30">
+<button class="pb-4 font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors">
+                    FORMS
+                </button>
+<button class="pb-4 font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors">
+                    SUBMISSIONS
+                </button>
+<button class="pb-4 font-label-md text-label-md text-primary border-b-2 border-primary">
+                    LEADS PIPELINE
+                </button>
+</div>
+</header>
+<!-- Pipeline Content -->
+<div class="p-margin-mobile md:p-margin-desktop max-w-container-max mx-auto">
+<!-- KPI Strip -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+<div class="bg-surface-container-lowest border border-outline-variant/30 p-6">
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-2 uppercase">Total Active Leads</p>
+<p class="font-headline-md text-headline-md text-on-surface">142</p>
+<p class="font-label-sm text-label-sm text-primary mt-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">trending_up</span> +12% this month
+                    </p>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant/30 p-6">
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-2 uppercase">Conversion Rate</p>
+<p class="font-headline-md text-headline-md text-on-surface">24.5%</p>
+<p class="font-label-sm text-label-sm text-primary mt-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">trending_up</span> +2.1% this month
+                    </p>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant/30 p-6">
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-2 uppercase">Avg. Time to Convert</p>
+<p class="font-headline-md text-headline-md text-on-surface">4.2 Days</p>
+<p class="font-label-sm text-label-sm text-tertiary mt-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">trending_flat</span> Stable
+                    </p>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant/30 p-6">
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-2 uppercase">Projected Value</p>
+<p class="font-headline-md text-headline-md text-on-surface">$18,400</p>
+</div>
+</div>
+<!-- Kanban Pipeline -->
+<div class="flex overflow-x-auto gap-6 pb-8 snap-x">
+<!-- Stage: New -->
+<div class="min-w-[320px] flex-1 snap-start">
+<div class="flex items-center justify-between mb-4 pb-2 border-b border-outline-variant/50">
+<h3 class="font-label-md text-label-md text-on-surface flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-error"></span> NEW
+                        </h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant bg-surface-variant px-2 py-1 rounded">12</span>
+</div>
+<div class="flex flex-col gap-4">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant/30 p-5 hover:border-primary/50 transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-3">
+<div>
+<h4 class="font-body-md text-body-md font-medium text-on-surface">Eleanor Vance</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Bridal Consultation</p>
+</div>
+<span class="font-label-sm text-label-sm bg-tertiary-container/30 text-on-surface px-2 py-1">Score: 85</span>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-4">Submitted 2 hours ago via Website</p>
+<div class="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 border border-outline text-on-surface hover:bg-surface-variant/30 rounded flex-1 flex justify-center items-center">
+<span class="material-symbols-outlined text-[18px]">mail</span>
+</button>
+<button class="p-2 border border-outline text-on-surface hover:bg-surface-variant/30 rounded flex-1 flex justify-center items-center">
+<span class="material-symbols-outlined text-[18px]">call</span>
+</button>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant/30 p-5 hover:border-primary/50 transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-3">
+<div>
+<h4 class="font-body-md text-body-md font-medium text-on-surface">Julian Black</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Color Correction</p>
+</div>
+<span class="font-label-sm text-label-sm bg-tertiary-container/30 text-on-surface px-2 py-1">Score: 62</span>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-4">Submitted 5 hours ago via Instagram</p>
+</div>
+</div>
+</div>
+<!-- Stage: Contacted -->
+<div class="min-w-[320px] flex-1 snap-start">
+<div class="flex items-center justify-between mb-4 pb-2 border-b border-outline-variant/50">
+<h3 class="font-label-md text-label-md text-on-surface flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary-fixed-dim"></span> CONTACTED
+                        </h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant bg-surface-variant px-2 py-1 rounded">8</span>
+</div>
+<div class="flex flex-col gap-4">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant/30 p-5 hover:border-primary/50 transition-colors cursor-pointer">
+<div class="flex justify-between items-start mb-3">
+<div>
+<h4 class="font-body-md text-body-md font-medium text-on-surface">Sophia Rossi</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Balayage &amp; Cut</p>
+</div>
+<span class="font-label-sm text-label-sm bg-primary-container/20 text-on-primary-container px-2 py-1">Score: 92</span>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-3">Follow-up call scheduled for tmrw</p>
+<div class="flex items-center gap-2 text-primary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+                                Tomorrow, 10:00 AM
+                            </div>
+</div>
+</div>
+</div>
+<!-- Stage: Qualified -->
+<div class="min-w-[320px] flex-1 snap-start">
+<div class="flex items-center justify-between mb-4 pb-2 border-b border-outline-variant/50">
+<h3 class="font-label-md text-label-md text-on-surface flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-outline"></span> QUALIFIED
+                        </h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant bg-surface-variant px-2 py-1 rounded">15</span>
+</div>
+<div class="flex flex-col gap-4">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant/30 p-5 hover:border-primary/50 transition-colors cursor-pointer">
+<div class="flex justify-between items-start mb-3">
+<div>
+<h4 class="font-body-md text-body-md font-medium text-on-surface">Marcus Thorne</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Editorial Styling</p>
+</div>
+<span class="font-label-sm text-label-sm bg-primary-container/20 text-on-primary-container px-2 py-1">Score: 98</span>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-3">Est. Value: $850</p>
+<button class="w-full py-2 bg-surface-variant/50 hover:bg-surface-variant text-on-surface font-label-md text-label-md transition-colors">
+                                Send Proposal
+                            </button>
+</div>
+</div>
+</div>
+<!-- Stage: Converted -->
+<div class="min-w-[320px] flex-1 snap-start">
+<div class="flex items-center justify-between mb-4 pb-2 border-b border-outline-variant/50">
+<h3 class="font-label-md text-label-md text-on-surface flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary"></span> CONVERTED
+                        </h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant bg-surface-variant px-2 py-1 rounded">42</span>
+</div>
+<div class="flex flex-col gap-4 opacity-70">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant/30 p-5">
+<div class="flex justify-between items-start mb-3">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+<div>
+<h4 class="font-body-md text-body-md font-medium text-on-surface line-through">Olivia Bennett</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Extensions</p>
+</div>
+</div>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant ml-7">Converted 2 days ago</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer (from JSON) -->
+<footer class="mt-auto border-t border-outline-variant/50 bg-surface-container-high dark:bg-surface-container-highest">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-8 md:py-12 mx-auto max-w-container-max">
+<div class="mb-6 md:mb-0 text-center md:text-left">
+<p class="font-display-lg text-headline-md text-on-surface mb-2 tracking-tight">Trimly</p>
+<p class="font-body-sm text-label-sm text-on-surface-variant">© 2024 Trimly Technologies. Approachable Luxury for Indian Salons.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-6 font-body-sm text-label-sm">
+<a class="text-on-surface-variant hover:text-primary hover:opacity-80 transition-opacity" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-primary hover:opacity-80 transition-opacity" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-primary hover:opacity-80 transition-opacity" href="#">Careers</a>
+<a class="text-on-surface-variant hover:text-primary hover:opacity-80 transition-opacity" href="#">Press Kit</a>
+</div>
+</div>
+</footer>
+</main>
+</body></html>

@@ -1,0 +1,225 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-sans: "Manrope", "Segoe UI", Arial, sans-serif;
+    --font-display: "Cormorant Garamond", Georgia, serif;
+    --font-bodoni: "Bodoni Moda", serif;
+    --font-hanken: "Hanken Grotesk", sans-serif;
+
+    --background: 240 21% 4%;
+    --foreground: 0 0% 100%;
+
+    --card: 240 18% 10%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 240 18% 10%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 43 65% 52%;
+    --primary-foreground: 240 21% 4%;
+
+    --secondary: 240 12% 16%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 240 10% 17%;
+    --muted-foreground: 240 8% 68%;
+
+    --accent: 43 65% 18%;
+    --accent-foreground: 43 90% 92%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 240 10% 20%;
+    --input: 240 10% 20%;
+    --ring: 43 65% 52%;
+
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 240 21% 4%;
+    --foreground: 0 0% 100%;
+
+    --card: 240 18% 10%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 240 18% 10%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 43 65% 52%;
+    --primary-foreground: 240 21% 4%;
+
+    --secondary: 240 12% 16%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 240 10% 17%;
+    --muted-foreground: 240 8% 68%;
+
+    --accent: 43 65% 18%;
+    --accent-foreground: 43 90% 92%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 10% 20%;
+    --input: 240 10% 20%;
+    --ring: 43 65% 52%;
+    --font-bodoni: "Bodoni Moda", serif;
+    --font-hanken: "Hanken Grotesk", sans-serif;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    font-family: var(--font-sans), system-ui, sans-serif;
+    background:
+      radial-gradient(circle at top, rgba(212, 175, 55, 0.12), transparent 32%),
+      linear-gradient(180deg, #0b0b0f 0%, #09090d 55%, #07070a 100%);
+  }
+}
+
+/* Premium micro-interactions & utility classes */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.dark .glass {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.light-theme {
+  background: #fbf9f9 !important;
+}
+
+body:has(.light-theme) {
+  background: #fbf9f9 !important;
+}
+
+.light-theme .glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  border: 0.5px solid rgba(127, 118, 99, 0.2);
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #d0c5af;
+  border-radius: 10px;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.staff-modal-input {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid #dbe2ea;
+  background: #ffffff;
+  padding: 12px 14px;
+  font-size: 14px;
+  color: #0f172a;
+  outline: none;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.staff-modal-input::placeholder {
+  color: #94a3b8;
+}
+
+.staff-modal-input:focus {
+  border-color: #735c00;
+  box-shadow: 0 0 0 4px rgba(115, 92, 0, 0.12);
+}
+
+.appointment-line {
+  background: linear-gradient(to bottom, #d4af37 0%, transparent 100%);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #f9f4dd 0%, #d4af37 50%, #a87f1d 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.font-display {
+  font-family: var(--font-display), Georgia, serif;
+}
+
+/* Light Luxury Landing Page theme configuration */
+.light-theme {
+  --background: 12 20% 98.4%; /* corresponds to #fcf9f8 */
+  --foreground: 0 0% 11%;   /* corresponds to #1c1b1b */
+  --primary: 48 100% 22.5%;   /* corresponds to #735c00 */
+  --primary-foreground: 0 0% 100%;
+  --muted: 12 10% 94%;
+  --muted-foreground: 12 12% 45%;
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 11%;
+  --border: 41 24.5% 75%;
+  --input: 41 24.5% 75%;
+  --ring: 48 100% 22.5%;
+  --secondary: 50 2.5% 36.5%; /* corresponds to #5e5f5b */
+  --secondary-foreground: 0 0% 100%;
+  --accent: 48 100% 15%;
+  --accent-foreground: 48 100% 90%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 11%;
+}
+
+.light-theme .glass-nav {
+  background: rgba(252, 249, 248, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.light-theme .ambient-shadow {
+  box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.04);
+}
+
+.light-theme .fade-up {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.light-theme .fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.light-theme .parallax-bg {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

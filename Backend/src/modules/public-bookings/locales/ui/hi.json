@@ -1,0 +1,7 @@
+{
+  "_version": 1,
+  "public_booking.rate_limit": "बहुत अधिक प्रयास किए गए। कृपया एक मिनट के बाद पुनः प्रयास करें।",
+  "public_booking.bot_detected": "बुकिंग प्रक्रिया पूरी नहीं की जा सकी।",
+  "public_booking.notice_limit": "बुकिंग कम से कम {hours} घंटे पहले निर्धारित की जानी चाहिए।",
+  "public_booking.hold_overlap": "यह स्लॉट पहले से ही किसी अन्य ग्राहक द्वारा आरक्षित है।"
+}
