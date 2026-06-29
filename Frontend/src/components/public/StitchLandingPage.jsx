@@ -113,6 +113,32 @@ function MainShowcaseReveal({ treatment }) {
     }
   };
 
+  const handleTouchMove = (e) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const touch = e.touches[0];
+    if (!touch) return;
+    const x = touch.clientX - rect.left;
+    const y = touch.clientY - rect.top;
+    const percentage = Math.max(0, Math.min(100, (x / rect.width) * 100));
+
+    gsap.to(containerRef.current, {
+      '--reveal-x': `${percentage}%`,
+      duration: 0.15,
+      ease: 'power2.out',
+      onUpdate: () => setRevealX(percentage)
+    });
+
+    if (scissorRef.current) {
+      gsap.to(scissorRef.current, {
+        x: x,
+        y: y,
+        duration: 0.1,
+        ease: 'power2.out'
+      });
+    }
+  };
+
   // Reset reveal line when treatment switches
   useEffect(() => {
     setRevealX(50);
@@ -142,6 +168,17 @@ function MainShowcaseReveal({ treatment }) {
           });
         }}
         onMouseMove={handleMouseMove}
+        onTouchStart={() => setIsHovering(true)}
+        onTouchEnd={() => {
+          setIsHovering(false);
+          gsap.to(containerRef.current, {
+            '--reveal-x': '50%',
+            duration: 0.4,
+            ease: 'power2.out',
+            onUpdate: () => setRevealX(50)
+          });
+        }}
+        onTouchMove={handleTouchMove}
         style={{ '--reveal-x': '50%' }}
       >
         {/* Before Image (underneath) */}
@@ -235,6 +272,11 @@ export default function StitchLandingPage() {
   const [selectedStaff, setSelectedStaff] = useState('');
   const [selectedTime, setSelectedTime] = useState('');
   const [showWhatsApp, setShowWhatsApp] = useState(false);
+
+  // Mobile navigation and interactive simulator states
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
+  const [activeDemoTab, setActiveDemoTab] = useState('dashboard');
 
   // References for animations
   const heroTextRef = useRef(null);
@@ -598,6 +640,13 @@ export default function StitchLandingPage() {
         .booking-phone-shadow {
           box-shadow: 0 25px 60px -15px rgba(181, 138, 42, 0.12);
         }
+        @keyframes fadeIn {
+          from { opacity: 0; transform: scale(0.96); }
+          to { opacity: 1; transform: scale(1); }
+        }
+        .animate-fade-in {
+          animation: fadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
       `}} />
 
       {/* Navigation Header */}
@@ -614,12 +663,47 @@ export default function StitchLandingPage() {
             <a className="font-sans text-sm font-medium text-[#1A1A1A]/70 hover:text-[#B58A2A] transition-colors" href="#">About</a>
             <a className="font-sans text-sm font-medium text-[#1A1A1A]/70 hover:text-[#B58A2A] transition-colors" href="#">Contact</a>
           </div>
-          <div className="flex items-center gap-5">
+          <div className="flex items-center gap-3 sm:gap-5">
             <button className="hidden sm:block font-sans text-sm font-medium text-[#1A1A1A]/70 hover:text-[#B58A2A] transition-colors" onClick={() => window.location.assign('/login')}>Login</button>
-            <button className="bg-[#B58A2A] hover:bg-[#8A6A1F] text-white px-5 py-2.5 rounded-full font-sans text-sm font-semibold transition-all shadow-md shadow-[#B58A2A]/15 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]" onClick={() => window.location.assign('/register')}>Start Free Trial</button>
+            <button className="bg-[#B58A2A] hover:bg-[#8A6A1F] text-white px-4 py-2 sm:px-5 sm:py-2.5 rounded-full font-sans text-xs sm:text-sm font-semibold transition-all shadow-md shadow-[#B58A2A]/15 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]" onClick={() => window.location.assign('/register')}>Start Free Trial</button>
+            
+            {/* Hamburger Button */}
+            <button 
+              className="md:hidden text-[#1A1A1A] p-2 hover:text-[#B58A2A] transition-colors focus:outline-none"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {isMobileMenuOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
           </div>
         </div>
       </nav>
+
+      {/* Mobile Menu Overlay */}
+      <div 
+        className={`fixed inset-x-0 top-20 bg-[#F8F5F1] border-b border-[#E8DCC5]/40 shadow-xl transition-all duration-300 ease-in-out z-45 md:hidden overflow-hidden ${
+          isMobileMenuOpen ? 'max-h-[350px] opacity-100 py-6' : 'max-h-0 opacity-0 py-0'
+        }`}
+      >
+        <div className="flex flex-col gap-4 px-6">
+          <a className="font-sans text-base font-semibold text-[#1A1A1A] hover:text-[#B58A2A] transition-colors" href="/demo" onClick={() => setIsMobileMenuOpen(false)}>Product</a>
+          <a className="font-sans text-base font-semibold text-[#1A1A1A] hover:text-[#B58A2A] transition-colors" href="/demo-booking" onClick={() => setIsMobileMenuOpen(false)}>Features</a>
+          <a className="font-sans text-base font-semibold text-[#1A1A1A] hover:text-[#B58A2A] transition-colors" href="#pricing" onClick={() => setIsMobileMenuOpen(false)}>Pricing</a>
+          <a className="font-sans text-base font-semibold text-[#1A1A1A] hover:text-[#B58A2A] transition-colors" href="#" onClick={() => setIsMobileMenuOpen(false)}>About</a>
+          <a className="font-sans text-base font-semibold text-[#1A1A1A] hover:text-[#B58A2A] transition-colors" href="#" onClick={() => setIsMobileMenuOpen(false)}>Contact</a>
+          <div className="w-full h-px bg-[#E8DCC5]/30 my-2" />
+          <div className="flex items-center gap-4">
+            <button className="flex-1 py-3 border border-[#B58A2A]/40 text-[#8A6A1F] rounded-full font-sans text-sm font-semibold hover:bg-[#E8DCC5]/10 transition-colors" onClick={() => { setIsMobileMenuOpen(false); window.location.assign('/login'); }}>Login</button>
+            <button className="flex-1 py-3 bg-[#B58A2A] hover:bg-[#8A6A1F] text-white rounded-full font-sans text-sm font-semibold transition-colors text-center" onClick={() => { setIsMobileMenuOpen(false); window.location.assign('/register'); }}>Start Free Trial</button>
+          </div>
+        </div>
+      </div>
 
       <main className="pt-20">
         {/* HERO SECTION */}
@@ -652,11 +736,18 @@ export default function StitchLandingPage() {
                 </p>
               </div>
               <div className="flex flex-wrap gap-4 pt-2">
-                <button className="bg-[#B58A2A] hover:bg-[#8A6A1F] text-white px-8 py-4 rounded-full font-sans text-sm font-semibold transition-all shadow-md shadow-[#B58A2A]/15 hover:scale-[1.03]" onClick={() => window.location.assign('/register')}>Start Free Trial</button>
+                <button className="bg-[#B58A2A] hover:bg-[#8A6A1F] text-white px-8 py-4 rounded-full font-sans text-sm font-semibold transition-all shadow-md shadow-[#B58A2A]/15 hover:scale-[1.03] active:scale-[0.97]" onClick={() => window.location.assign('/register')}>Start Free Trial</button>
                 <button className="border border-[#B58A2A]/40 text-[#8A6A1F] hover:bg-[#E8DCC5]/20 px-8 py-4 rounded-full font-sans text-sm font-semibold transition-all" onClick={() => {
                   const demoSection = document.getElementById('booking-demo');
                   if (demoSection) demoSection.scrollIntoView({ behavior: 'smooth' });
                 }}>Watch Demo</button>
+                <button 
+                  className="bg-[#1A1A1A] hover:bg-stone-850 text-white px-8 py-4 rounded-full font-sans text-sm font-semibold transition-all flex items-center gap-2 shadow-lg hover:scale-[1.03] active:scale-[0.97]" 
+                  onClick={() => setIsDemoModalOpen(true)}
+                >
+                  <span className="material-symbols-outlined text-sm">phone_iphone</span>
+                  Explore the Demo
+                </button>
               </div>
             </div>
 
@@ -666,7 +757,7 @@ export default function StitchLandingPage() {
                 ref={heroVisualRef}
                 onMouseMove={handleHeroMouseMove}
                 onMouseLeave={handleHeroMouseLeave}
-                className="relative w-full max-w-[520px] aspect-[1/1] flex items-center justify-center transition-transform duration-300"
+                className="relative w-full max-w-[520px] aspect-[1/1] flex items-center justify-center transition-transform duration-350"
                 style={{ transformStyle: 'preserve-3d' }}
               >
                 {/* Center Image */}
@@ -697,7 +788,7 @@ export default function StitchLandingPage() {
                 </div>
 
                 {/* Floating Widget 3: Payments */}
-                <div className="absolute bottom-[20%] left-[-8%] z-20 floating-card bg-white/80 border border-[#E8DCC5]/40 rounded-2xl p-4 flex items-center gap-3 animate-float-3 max-w-[210px] cursor-pointer">
+                <div className="absolute bottom-[20%] left-[2%] sm:left-[-8%] z-20 floating-card bg-white/80 border border-[#E8DCC5]/40 rounded-2xl p-4 flex items-center gap-3 animate-float-3 max-w-[210px] cursor-pointer">
                   <div className="w-10 h-10 rounded-full bg-indigo-50 flex items-center justify-center text-indigo-600">
                     <span className="material-symbols-outlined text-lg">payments</span>
                   </div>
@@ -708,7 +799,7 @@ export default function StitchLandingPage() {
                 </div>
 
                 {/* Floating Widget 4: Staff Active */}
-                <div className="absolute bottom-[16%] right-[-5%] z-20 floating-card bg-white/80 border border-[#E8DCC5]/40 rounded-2xl p-4 flex items-center gap-3 animate-float-4 max-w-[170px] cursor-pointer">
+                <div className="absolute bottom-[16%] right-[2%] sm:right-[-5%] z-20 floating-card bg-white/80 border border-[#E8DCC5]/40 rounded-2xl p-4 flex items-center gap-3 animate-float-4 max-w-[170px] cursor-pointer">
                   <div className="w-10 h-10 rounded-full bg-[#E8DCC5]/30 flex items-center justify-center text-[#8A6A1F]">
                     <span className="material-symbols-outlined text-lg">badge</span>
                   </div>
@@ -765,7 +856,7 @@ export default function StitchLandingPage() {
             {/* Timeline Layout */}
             <div className="relative max-w-4xl mx-auto flex flex-col items-center">
               {/* SVG Connector Line */}
-              <div className="absolute top-[20px] bottom-[20px] w-[2px] left-1/2 -translate-x-1/2 pointer-events-none">
+              <div className="absolute top-[20px] bottom-[20px] w-[2px] left-6 md:left-1/2 -translate-x-1/2 pointer-events-none">
                 {/* Background Line */}
                 <div className="absolute inset-0 w-full h-full bg-[#E8DCC5]/30" />
                 {/* Active drawing Line */}
@@ -782,7 +873,7 @@ export default function StitchLandingPage() {
               <div className="relative grid grid-cols-1 md:grid-cols-2 w-full mb-16 md:mb-24 items-center">
                 {/* Text Side */}
                 <div className="journey-card md:text-right md:pr-12 pl-12 md:pl-0 order-2 md:order-1">
-                  <div className="bg-[#F8F5F1] p-6 rounded-2xl border border-[#E8DCC5]/30 max-w-md ml-auto">
+                  <div className="bg-[#F8F5F1] p-6 rounded-2xl border border-[#E8DCC5]/30 max-w-md ml-0 md:ml-auto">
                     <span className="text-xs font-sans font-bold text-[#B58A2A]">STEP 01</span>
                     <h3 className="luxury-heading text-lg font-bold text-[#1A1A1A] mt-1 mb-2">Customer Books</h3>
                     <p className="font-sans text-xs text-[#1A1A1A]/70 leading-relaxed">
@@ -791,7 +882,7 @@ export default function StitchLandingPage() {
                   </div>
                 </div>
                 {/* Dot in Center */}
-                <div className="journey-node absolute left-1/2 -translate-x-1/2 w-8 h-8 rounded-full border-[3px] border-[#E8DCC5] bg-white z-20 flex items-center justify-center top-0 md:top-auto order-1 md:order-2">
+                <div className="journey-node absolute left-6 md:left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full border-[3px] border-[#E8DCC5] bg-white z-20 flex items-center justify-center order-1 md:order-2">
                   <span className="w-2.5 h-2.5 rounded-full bg-[#B58A2A]" />
                 </div>
                 {/* Empty side for layout */}
@@ -801,7 +892,7 @@ export default function StitchLandingPage() {
               {/* Journey Step 2 */}
               <div className="relative grid grid-cols-1 md:grid-cols-2 w-full mb-16 md:mb-24 items-center">
                 <div className="hidden md:block pr-12 text-right" />
-                <div className="journey-node absolute left-1/2 -translate-x-1/2 w-8 h-8 rounded-full border-[3px] border-[#E8DCC5] bg-white z-20 flex items-center justify-center top-0 md:top-auto">
+                <div className="journey-node absolute left-6 md:left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full border-[3px] border-[#E8DCC5] bg-white z-20 flex items-center justify-center">
                   <span className="w-2.5 h-2.5 rounded-full bg-[#B58A2A]" />
                 </div>
                 <div className="journey-card pl-12 max-w-md">
@@ -818,7 +909,7 @@ export default function StitchLandingPage() {
               {/* Journey Step 3 */}
               <div className="relative grid grid-cols-1 md:grid-cols-2 w-full mb-16 md:mb-24 items-center">
                 <div className="journey-card md:text-right md:pr-12 pl-12 md:pl-0 order-2 md:order-1">
-                  <div className="bg-[#F8F5F1] p-6 rounded-2xl border border-[#E8DCC5]/30 max-w-md ml-auto">
+                  <div className="bg-[#F8F5F1] p-6 rounded-2xl border border-[#E8DCC5]/30 max-w-md ml-0 md:ml-auto">
                     <span className="text-xs font-sans font-bold text-[#B58A2A]">STEP 03</span>
                     <h3 className="luxury-heading text-lg font-bold text-[#1A1A1A] mt-1 mb-2">The Service</h3>
                     <p className="font-sans text-xs text-[#1A1A1A]/70 leading-relaxed">
@@ -826,7 +917,7 @@ export default function StitchLandingPage() {
                     </p>
                   </div>
                 </div>
-                <div className="journey-node absolute left-1/2 -translate-x-1/2 w-8 h-8 rounded-full border-[3px] border-[#E8DCC5] bg-white z-20 flex items-center justify-center top-0 md:top-auto order-1 md:order-2">
+                <div className="journey-node absolute left-6 md:left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full border-[3px] border-[#E8DCC5] bg-white z-20 flex items-center justify-center order-1 md:order-2">
                   <span className="w-2.5 h-2.5 rounded-full bg-[#B58A2A]" />
                 </div>
                 <div className="hidden md:block pl-12 order-3" />
@@ -835,7 +926,7 @@ export default function StitchLandingPage() {
               {/* Journey Step 4 */}
               <div className="relative grid grid-cols-1 md:grid-cols-2 w-full mb-16 md:mb-24 items-center">
                 <div className="hidden md:block pr-12 text-right" />
-                <div className="journey-node absolute left-1/2 -translate-x-1/2 w-8 h-8 rounded-full border-[3px] border-[#E8DCC5] bg-white z-20 flex items-center justify-center top-0 md:top-auto">
+                <div className="journey-node absolute left-6 md:left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full border-[3px] border-[#E8DCC5] bg-white z-20 flex items-center justify-center">
                   <span className="w-2.5 h-2.5 rounded-full bg-[#B58A2A]" />
                 </div>
                 <div className="journey-card pl-12 max-w-md">
@@ -852,7 +943,7 @@ export default function StitchLandingPage() {
               {/* Journey Step 5 */}
               <div className="relative grid grid-cols-1 md:grid-cols-2 w-full items-center">
                 <div className="journey-card md:text-right md:pr-12 pl-12 md:pl-0 order-2 md:order-1">
-                  <div className="bg-[#F8F5F1] p-6 rounded-2xl border border-[#E8DCC5]/30 max-w-md ml-auto">
+                  <div className="bg-[#F8F5F1] p-6 rounded-2xl border border-[#E8DCC5]/30 max-w-md ml-0 md:ml-auto">
                     <span className="text-xs font-sans font-bold text-[#B58A2A]">STEP 05</span>
                     <h3 className="luxury-heading text-lg font-bold text-[#1A1A1A] mt-1 mb-2">Revisit Cycle</h3>
                     <p className="font-sans text-xs text-[#1A1A1A]/70 leading-relaxed">
@@ -860,7 +951,7 @@ export default function StitchLandingPage() {
                     </p>
                   </div>
                 </div>
-                <div className="journey-node absolute left-1/2 -translate-x-1/2 w-8 h-8 rounded-full border-[3px] border-[#E8DCC5] bg-white z-20 flex items-center justify-center top-0 md:top-auto order-1 md:order-2">
+                <div className="journey-node absolute left-6 md:left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full border-[3px] border-[#E8DCC5] bg-white z-20 flex items-center justify-center order-1 md:order-2">
                   <span className="w-2.5 h-2.5 rounded-full bg-[#B58A2A]" />
                 </div>
                 <div className="hidden md:block pl-12 order-3" />
@@ -2548,6 +2639,333 @@ export default function StitchLandingPage() {
           </div>
         </div>
       </footer>
+
+      {/* Interactive Mobile Demo Modal */}
+      {isDemoModalOpen && (
+        <div className="fixed inset-0 z-[100] bg-black/75 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 overflow-y-auto animate-fade-in">
+          <div className="bg-[#F8F5F1] rounded-[36px] border border-[#E8DCC5]/50 shadow-2xl w-full max-w-[850px] overflow-hidden flex flex-col md:flex-row h-[90vh] md:h-[650px] relative">
+            
+            {/* Close Button */}
+            <button 
+              className="absolute top-5 right-5 z-50 bg-white/85 hover:bg-white text-stone-700 hover:text-black w-8 h-8 rounded-full flex items-center justify-center border border-stone-200/80 shadow-md transition-all active:scale-[0.95]"
+              onClick={() => setIsDemoModalOpen(false)}
+            >
+              <span className="material-symbols-outlined text-sm font-bold">close</span>
+            </button>
+
+            {/* Left Content / Controller Area */}
+            <div className="p-6 md:p-8 md:w-[45%] flex flex-col justify-between border-b md:border-b-0 md:border-r border-[#E8DCC5]/40 overflow-y-auto h-1/2 md:h-full bg-white/40">
+              <div className="space-y-6">
+                <div>
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#E8DCC5]/40 text-[#8A6A1F] font-sans text-[10px] font-bold tracking-widest rounded-full uppercase border border-[#B58A2A]/20">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#B58A2A] animate-pulse" />
+                    Live Mobile Simulator
+                  </span>
+                  <h3 className="luxury-heading text-2xl font-bold text-[#1A1A1A] mt-3 leading-tight">
+                    Explore Trimly OS <br />On Mobile
+                  </h3>
+                  <p className="font-sans text-xs text-stone-500 leading-relaxed mt-2">
+                    Experience how your salon looks in the palm of your hand. Tap the modules below to switch screens on the simulated phone mockup.
+                  </p>
+                </div>
+
+                {/* Tab selector buttons */}
+                <div className="space-y-2.5">
+                  {[
+                    { id: 'dashboard', icon: 'trending_up', label: 'Revenue Dashboard', desc: 'Monitor daily sales and active stylists.' },
+                    { id: 'calendar', icon: 'calendar_month', label: 'Stylist Rota Calendar', desc: 'Drag, drop, and check appointments.' },
+                    { id: 'crm', icon: 'group', label: 'VIP Client CRM', desc: 'Track loyalty scores and visit records.' },
+                    { id: 'billing', icon: 'receipt_long', label: 'Quick POS Checkout', desc: 'Accept payments and print custom bills.' }
+                  ].map((tab) => {
+                    const isActive = activeDemoTab === tab.id;
+                    return (
+                      <button
+                        key={tab.id}
+                        onClick={() => setActiveDemoTab(tab.id)}
+                        className={`w-full text-left p-3.5 rounded-2xl border transition-all flex items-start gap-3.5 group cursor-pointer ${
+                          isActive 
+                            ? 'bg-[#B58A2A]/10 border-[#B58A2A] shadow-xs' 
+                            : 'bg-white border-[#E8DCC5]/30 hover:border-[#B58A2A]/40 hover:bg-stone-50/50'
+                        }`}
+                      >
+                        <span className={`material-symbols-outlined text-lg p-2.5 rounded-xl shrink-0 transition-colors ${
+                          isActive 
+                            ? 'bg-[#B58A2A] text-white' 
+                            : 'bg-[#F8F5F1] text-[#8A6A1F] group-hover:bg-[#E8DCC5]/30'
+                        }`}>
+                          {tab.icon}
+                        </span>
+                        <div>
+                          <span className={`font-sans font-bold text-xs block transition-colors ${isActive ? 'text-[#8A6A1F]' : 'text-[#1A1A1A]'}`}>
+                            {tab.label}
+                          </span>
+                          <span className="text-[10px] text-stone-400 block leading-tight mt-0.5">{tab.desc}</span>
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Bottom badge */}
+              <div className="pt-6 border-t border-[#E8DCC5]/30 hidden md:block">
+                <p className="text-[10px] text-stone-400 font-sans leading-relaxed">
+                  *This simulator uses different classes and raw CSS media queries specifically engineered for device previews.
+                </p>
+              </div>
+            </div>
+
+            {/* Right: Phone Simulator Container */}
+            <div className="flex-1 flex items-center justify-center p-6 md:p-8 h-1/2 md:h-full bg-[#E8DCC5]/10 relative overflow-hidden">
+              
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-[#B58A2A]/5 rounded-full blur-[80px] pointer-events-none" />
+
+              {/* iPhone Mockup Frame */}
+              <div className="w-[280px] sm:w-[310px] aspect-[9/18.5] bg-stone-900 rounded-[38px] p-2.5 border-[5px] border-stone-850 shadow-2xl relative flex flex-col justify-between overflow-hidden scale-90 sm:scale-100 transition-transform">
+                
+                {/* Dynamic Island / Camera Notch */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-5 bg-stone-900 rounded-b-2xl z-50 flex items-center justify-center">
+                  <div className="w-8 h-1.5 speaker bg-stone-800 rounded-full" />
+                </div>
+
+                {/* Simulator Display Screen */}
+                <div className="flex-1 bg-[#F8F5F1] rounded-[30px] p-3.5 flex flex-col justify-between overflow-hidden relative pt-6 font-sans select-none">
+                  
+                  {/* Status Bar Mockup */}
+                  <div className="flex justify-between items-center text-[8px] font-sans font-bold text-stone-400 px-1 mb-2">
+                    <span>9:41 AM</span>
+                    <div className="flex items-center gap-1">
+                      <span className="material-symbols-outlined text-[8px]">signal_cellular_alt</span>
+                      <span className="material-symbols-outlined text-[8px]">wifi</span>
+                      <span className="material-symbols-outlined text-[9px]">battery_full</span>
+                    </div>
+                  </div>
+
+                  {/* Simulator Screen Content Header */}
+                  <div className="flex justify-between items-center pb-2 border-b border-stone-200/50 mb-3">
+                    <div className="flex items-center gap-1.5">
+                      <img src="/logo.svg" alt="Logo" className="w-4.5 h-4.5 object-contain" />
+                      <span className="luxury-heading text-[11px] font-bold text-[#1A1A1A]">Trimly OS</span>
+                    </div>
+                    <span className="text-[7px] font-bold text-[#8A6A1F] bg-[#E8DCC5]/40 px-1.5 py-0.5 rounded-full uppercase tracking-wider">
+                      {activeDemoTab}
+                    </span>
+                  </div>
+
+                  {/* Simulator Screen Body */}
+                  <div className="flex-1 overflow-y-auto custom-scrollbar pr-0.5 space-y-3">
+                    
+                    {/* TAB CONTENT: DASHBOARD */}
+                    {activeDemoTab === 'dashboard' && (
+                      <div className="space-y-3 animate-fade-in">
+                        {/* Summary metric card */}
+                        <div className="bg-white p-3 rounded-xl border border-[#E8DCC5]/40 shadow-xs space-y-1">
+                          <span className="text-[7.5px] font-sans font-bold text-stone-400 tracking-wider uppercase block">Today's Revenue</span>
+                          <div className="flex items-baseline justify-between">
+                            <span className="text-base font-sans font-bold text-[#1A1A1A]">₹42,500</span>
+                            <span className="text-[7.5px] font-sans font-bold text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded-full flex items-center gap-0.5">
+                              <span className="material-symbols-outlined text-[8px] font-bold">arrow_upward</span>
+                              +14%
+                            </span>
+                          </div>
+                        </div>
+
+                        {/* Split progress metrics */}
+                        <div className="grid grid-cols-2 gap-2">
+                          <div className="bg-white p-2.5 rounded-xl border border-stone-100 text-left">
+                            <span className="text-[7px] text-stone-400 font-bold block uppercase tracking-wider">Booked</span>
+                            <span className="text-xs font-bold text-[#1A1A1A] block mt-0.5">14 Sessions</span>
+                          </div>
+                          <div className="bg-white p-2.5 rounded-xl border border-stone-100 text-left">
+                            <span className="text-[7px] text-stone-400 font-bold block uppercase tracking-wider">Occupancy</span>
+                            <span className="text-xs font-bold text-[#B58A2A] block mt-0.5">85% Capacity</span>
+                          </div>
+                        </div>
+
+                        {/* Active Stylist Rota */}
+                        <div className="bg-white p-3 rounded-xl border border-[#E8DCC5]/30">
+                          <h5 className="text-[8.5px] font-sans font-bold text-[#1A1A1A] mb-2 uppercase tracking-wide">Stylists on Duty</h5>
+                          <div className="space-y-2">
+                            {[
+                              { name: 'Karan Malhotra', role: 'Master Barber', status: 'In Session', color: 'bg-amber-500' },
+                              { name: 'Sana Kapoor', role: 'Skincare Lead', status: 'Available', color: 'bg-emerald-500' },
+                              { name: 'Rohan Sharma', role: 'Hair Stylist', status: 'Available', color: 'bg-emerald-500' }
+                            ].map((stylist, sIdx) => (
+                              <div key={sIdx} className="flex items-center justify-between text-[9px]">
+                                <div className="flex items-center gap-1.5">
+                                  <div className="w-5 h-5 rounded-full bg-stone-100 overflow-hidden">
+                                    <span className="material-symbols-outlined text-[10px] text-stone-400 flex items-center justify-center h-full">person</span>
+                                  </div>
+                                  <div>
+                                    <span className="font-bold text-[#1A1A1A] block leading-tight">{stylist.name}</span>
+                                    <span className="text-[7px] text-stone-400 block">{stylist.role}</span>
+                                  </div>
+                                </div>
+                                <span className={`text-[7px] font-bold text-white ${stylist.color} px-1.5 py-0.5 rounded-full`}>
+                                  {stylist.status}
+                                </span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* TAB CONTENT: CALENDAR */}
+                    {activeDemoTab === 'calendar' && (
+                      <div className="space-y-3 animate-fade-in">
+                        <div className="bg-white p-3 rounded-xl border border-[#E8DCC5]/40 shadow-xs">
+                          <div className="flex justify-between items-center mb-2">
+                            <span className="text-[8.5px] font-sans font-bold text-[#1A1A1A] uppercase">Schedule Grid</span>
+                            <span className="text-[7px] text-stone-400 font-bold">June 12, 2026</span>
+                          </div>
+                          
+                          <div className="space-y-2">
+                            {[
+                              { time: '10:00 AM', label: 'Beard Trim & Clean Shave', stylist: 'Karan M.', selected: false },
+                              { time: '11:30 AM', label: 'Glass Skin facial & Scrub', stylist: 'Sana K.', selected: true },
+                              { time: '02:00 PM', label: 'Bridal Makeover Trial', stylist: 'Sana K.', selected: false },
+                              { time: '04:30 PM', label: 'Silk Keratin Therapy', stylist: 'Rohan S.', selected: false }
+                            ].map((slot, sIdx) => (
+                              <div 
+                                key={sIdx} 
+                                className={`p-2 rounded-lg border text-left flex items-start justify-between cursor-pointer transition-all ${
+                                  slot.selected 
+                                    ? 'bg-[#B58A2A]/15 border-[#B58A2A] shadow-2xs' 
+                                    : 'bg-stone-50 border-stone-100 hover:bg-white hover:border-[#E8DCC5]'
+                                }`}
+                              >
+                                <div>
+                                  <span className="text-[8px] font-bold text-stone-400 block">{slot.time}</span>
+                                  <span className="text-[9.5px] font-bold text-[#1A1A1A] block mt-0.5 leading-tight">{slot.label}</span>
+                                  <span className="text-[7.5px] text-[#B58A2A] block font-semibold mt-0.5">Stylist: {slot.stylist}</span>
+                                </div>
+                                {slot.selected && (
+                                  <span className="material-symbols-outlined text-[9px] text-[#B58A2A] bg-white rounded-full p-0.5">check</span>
+                                )}
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* TAB CONTENT: CRM */}
+                    {activeDemoTab === 'crm' && (
+                      <div className="space-y-3 animate-fade-in">
+                        <div className="bg-white p-2.5 rounded-xl border border-stone-200/60 flex items-center gap-1.5">
+                          <span className="material-symbols-outlined text-[10px] text-stone-400">search</span>
+                          <input 
+                            type="text" 
+                            readOnly 
+                            className="text-[9px] bg-transparent outline-none w-full border-none p-0 text-[#1A1A1A] placeholder-stone-300"
+                            placeholder="Search VIP customers..." 
+                          />
+                        </div>
+
+                        <div className="space-y-2">
+                          {[
+                            { name: 'Aditya Birla', visits: 12, spent: '₹28,500', rating: 'VIP', color: 'text-amber-700 bg-amber-50' },
+                            { name: 'Priya Sen', visits: 8, spent: '₹14,200', rating: 'Regular', color: 'text-stone-600 bg-stone-100' },
+                            { name: 'Kabir Dev', visits: 15, spent: '₹34,000', rating: 'VIP Elite', color: 'text-indigo-700 bg-indigo-50' }
+                          ].map((client, cIdx) => (
+                            <div key={cIdx} className="bg-white p-2.5 rounded-xl border border-[#E8DCC5]/25 flex items-center justify-between text-left">
+                              <div className="space-y-0.5">
+                                <span className="font-bold text-[9.5px] text-[#1A1A1A] block leading-tight">{client.name}</span>
+                                <div className="flex gap-2 text-[7.5px] text-stone-400">
+                                  <span>{client.visits} Visits</span>
+                                  <span>•</span>
+                                  <span>Spent: {client.spent}</span>
+                                </div>
+                              </div>
+                              <span className={`text-[7px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-full ${client.color}`}>
+                                {client.rating}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+
+                        <div className="bg-white p-3 rounded-xl border border-stone-100 text-left">
+                          <div className="flex items-center gap-1.5 text-[8px] font-bold text-[#8A6A1F] uppercase mb-1">
+                            <span className="material-symbols-outlined text-[9px]">notes</span>
+                            Active VIP Formula Logs
+                          </div>
+                          <p className="text-[8.5px] text-stone-500 font-sans leading-relaxed">
+                            "Aditya Birla: Matrix 50ml developer + 6N gold blonde highlights. Avoid hot water rinse due to scalp sensitivity."
+                          </p>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* TAB CONTENT: BILLING */}
+                    {activeDemoTab === 'billing' && (
+                      <div className="space-y-3 animate-fade-in text-left">
+                        <div className="bg-white p-3.5 rounded-xl border border-[#E8DCC5]/40 shadow-xs space-y-3">
+                          <div className="flex justify-between items-center text-[7.5px] font-bold text-stone-400 uppercase pb-1.5 border-b border-dashed border-stone-200">
+                            <span>Receipt #9901</span>
+                            <span>Cashier: Karan M.</span>
+                          </div>
+                          
+                          <div className="space-y-2">
+                            <div className="flex justify-between text-[9px] text-[#1A1A1A]">
+                              <div>
+                                <span className="font-bold block">Royal Scissor Cut &amp; Trim</span>
+                                <span className="text-[7px] text-stone-400">Stylist: Kabir D.</span>
+                              </div>
+                              <span className="font-bold text-stone-700">₹2,500</span>
+                            </div>
+                            <div className="flex justify-between text-[9px] text-[#1A1A1A]">
+                              <div>
+                                <span className="font-bold block">Hair Spa deep conditioning</span>
+                                <span className="text-[7px] text-stone-400">Stylist: Rohan S.</span>
+                              </div>
+                              <span className="font-bold text-stone-700">₹1,800</span>
+                            </div>
+                          </div>
+
+                          <div className="w-full h-px bg-stone-100" />
+
+                          <div className="space-y-1 text-[9px]">
+                            <div className="flex justify-between text-stone-400">
+                              <span>Subtotal</span>
+                              <span>₹4,300</span>
+                            </div>
+                            <div className="flex justify-between text-stone-400">
+                              <span>GST (18%)</span>
+                              <span>₹774</span>
+                            </div>
+                            <div className="flex justify-between text-[#1A1A1A] font-bold pt-1 text-[10px] border-t border-stone-100">
+                              <span>Total Net Tariff</span>
+                              <span className="text-[#B58A2A]">₹5,074</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-2">
+                          <button className="py-2.5 bg-[#B58A2A] text-white text-[8px] font-bold uppercase tracking-wider rounded-lg text-center shadow-xs">
+                            💳 UPI / Card
+                          </button>
+                          <button className="py-2.5 bg-white border border-stone-200 text-stone-600 text-[8px] font-bold uppercase tracking-wider rounded-lg text-center hover:bg-stone-50">
+                            🖨️ Print Receipt
+                          </button>
+                        </div>
+                      </div>
+                    )}
+
+                  </div>
+
+                  {/* Simulator Screen Footer */}
+                  <div className="pt-2 border-t border-stone-200/50 mt-2 text-center text-[6.5px] text-stone-400 font-bold uppercase tracking-widest">
+                    Trimly OS Live Simulation
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

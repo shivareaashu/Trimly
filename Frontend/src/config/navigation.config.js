@@ -39,6 +39,7 @@ export const NAVIGATION = [
     items: [
       { label: 'Appointments', href: '/appointments', icon: CalendarCheck, module: 'bookings', permission: 'booking.view' },
       { label: 'Walk-In Desk', href: '/reception', icon: ClipboardList, module: 'bookings', permission: 'booking.create' },
+      { label: 'Live Floor Cockpit', href: '/reception/floor', icon: Activity, module: 'bookings', permission: 'booking.create' },
       { label: 'Billing Queue', href: '/billing-queue', icon: Receipt, module: 'bookings', permission: 'booking.billing' },
       { label: 'Customers', href: '/customers', icon: Users, module: 'customers', permission: 'customer.view' },
       { label: 'Revisit Center', href: '/revisit-center', icon: UserCheck, module: 'customers', permission: 'customer.view' },
@@ -103,6 +104,7 @@ export const NAVIGATION = [
     scope: 'receptionist',
     items: [
       { label: 'Reception', href: '/reception', icon: ClipboardList, module: 'bookings', permission: 'booking.create' },
+      { label: 'Live Floor Cockpit', href: '/reception/floor', icon: Activity, module: 'bookings', permission: 'booking.create' },
       { label: 'Check-In Board', href: '/appointments', icon: CalendarCheck, module: 'bookings', permission: 'booking.view' },
       { label: 'Billing Queue', href: '/billing-queue', icon: Receipt, module: 'bookings', permission: 'booking.billing' },
       { label: 'Customers', href: '/customers', icon: Users, module: 'customers', permission: 'customer.view' },

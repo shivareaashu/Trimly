@@ -2,8 +2,8 @@ import prisma from '../../config/db.js';
 import * as publicBookingRepo from './publicBooking.repository.js';
 import { emitBookingEvent } from './publicBooking.events.js';
 import redisClient from '../../config/redis.js';
-import { createActivityEvent, createBookingTimelineEvent } from '../../shared/services/activity/activity.service.js';
 import { dispatchNotification } from '../../shared/services/notifications/notification.dispatcher.js';
+import { activityEmitter } from '../../shared/services/activity/activityEmitter.js';
 
 /**
  * Calculates available public booking slots for a salon service on a date.
@@ -280,35 +280,13 @@ export async function createPublicBooking(tenantId, data) {
 
   // 9. Emit event for async notifications
   await emitBookingEvent('booking.created', booking);
+  activityEmitter.emit('booking.created', { tenantId, booking });
 
-  // 10. Create activity event for timelines, daily summary, and activity center
+  // 10. Dispatch notification via event-driven system
   const tenant = await prisma.tenant.findUnique({ where: { id: tenantId } });
 
   (async () => {
     try {
-      await createActivityEvent(tenantId, {
-        eventType: 'booking.created',
-        title: `Booking ${booking.bookingReference} created`,
-        description: `${booking.customer?.firstName} ${booking.customer?.lastName} booked ${booking.service?.name} with ${booking.staff?.name}`,
-        sourceModule: 'public-booking',
-        entityType: 'appointment',
-        entityId: booking.id,
-        customerId: booking.customerId,
-        appointmentId: booking.id,
-        actorStaffId: booking.staffId,
-        branchId: booking.branchId || null,
-        metadata: {
-          bookingReference: booking.bookingReference,
-          serviceName: booking.service?.name,
-          staffName: booking.staff?.name,
-          source: 'WEBSITE',
-        },
-      });
-
-      // Create customer timeline event
-      await createBookingTimelineEvent(tenantId, booking);
-
-      // Dispatch notification via event-driven system
       await dispatchNotification(tenantId, {
         eventType: 'booking.created',
         channel: 'EMAIL',
@@ -320,7 +298,7 @@ export async function createPublicBooking(tenantId, data) {
         },
       });
     } catch (err) {
-      console.error('[Public Booking] Post-creation event/notification error:', err.message);
+      console.error('[Public Booking] Post-creation notification error:', err.message);
     }
   })();
 

@@ -11,7 +11,8 @@ import {
   handleGetMembershipPlans,
   handlePurchaseMembership,
   handleCustomersDueForRevisit,
-  handleRefreshLifecycle
+  handleRefreshLifecycle,
+  handleGetCustomerPassport
 } from './customer.controller.js';
 import { authenticate } from '../../middleware/auth.middleware.js';
 import { resolveTenant } from '../../middleware/tenant.middleware.js';
@@ -51,6 +52,12 @@ router.get(
   '/:id',
   requirePermission('customer.view'),
   handleGetCustomer
+);
+
+router.get(
+  '/:id/passport',
+  requirePermission('customer.view'),
+  handleGetCustomerPassport
 );
 
 router.post(

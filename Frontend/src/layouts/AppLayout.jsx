@@ -10,6 +10,7 @@ import { useModules } from '@/hooks/useModules';
 import { NAVIGATION } from '@/config/navigation.config';
 import { AlertCircle, RefreshCw } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import CommandPalette from '@/components/shell/CommandPalette';
 
 export default function AppLayout({ children, scope = 'admin', variant = 'admin' }) {
   const [collapsed, setCollapsed] = useState(false);
@@ -120,6 +121,7 @@ export default function AppLayout({ children, scope = 'admin', variant = 'admin'
         </main>
         <Footer />
       </div>
+      <CommandPalette />
     </div>
   );
 }

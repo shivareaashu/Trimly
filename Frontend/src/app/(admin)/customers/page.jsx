@@ -36,7 +36,11 @@ export default function CustomersPage() {
   const [timeline, setTimeline] = useState([]);
   const [loyalty, setLoyalty] = useState(null);
   const [membershipPlans, setMembershipPlans] = useState([]);
-  const [activeTab, setActiveTab] = useState('overview'); // overview, timeline, loyalty, membership
+  const [activeTab, setActiveTab] = useState('overview'); // overview, timeline, loyalty, membership, photos
+
+  const [passportMetrics, setPassportMetrics] = useState(null);
+  const [photos, setPhotos] = useState([]);
+  const [activeMembership, setActiveMembership] = useState(null);
 
   // Search & Filtering
   const [searchQuery, setSearchQuery] = useState('');
@@ -99,24 +103,20 @@ export default function CustomersPage() {
     if (!activeTenant?.id || !token || !id) return;
     try {
       setMsg({ type: '', text: '' });
-      const [custRes, timeRes, loyalRes, plansRes] = await Promise.all([
-        fetch(`${API_BASE}/api/customers/${id}`, { headers }),
-        fetch(`${API_BASE}/api/customers/${id}/timeline`, { headers }),
-        fetch(`${API_BASE}/api/customers/${id}/loyalty`, { headers }),
+      const [passRes, plansRes] = await Promise.all([
+        fetch(`${API_BASE}/api/customers/${id}/passport`, { headers }),
         fetch(`${API_BASE}/api/customers/membership-plans`, { headers }),
       ]);
 
-      if (custRes.ok) {
-        const custData = await custRes.json();
-        setSelectedCustomer(custData.customer);
-      }
-      if (timeRes.ok) {
-        const timeData = await timeRes.json();
-        setTimeline(timeData.events || []);
-      }
-      if (loyalRes.ok) {
-        const loyalData = await loyalRes.json();
-        setLoyalty(loyalData.loyalty || null);
+      if (passRes.ok) {
+        const passData = await passRes.json();
+        const passport = passData.passport;
+        setSelectedCustomer(passport.customer);
+        setTimeline(passport.timeline || []);
+        setLoyalty(passport.loyalty || null);
+        setPassportMetrics(passport.metrics || null);
+        setPhotos(passport.photos || []);
+        setActiveMembership(passport.activeMembership || null);
       }
       if (plansRes.ok) {
         const plansData = await plansRes.json();
@@ -439,7 +439,7 @@ export default function CustomersPage() {
 
                   {/* Tabs bar */}
                   <div className="flex gap-2 mt-6 border-b border-border/40 pb-0.5">
-                    {['overview', 'timeline', 'loyalty', 'membership'].map((tab) => (
+                    {['overview', 'timeline', 'loyalty', 'membership', 'photos'].map((tab) => (
                       <button
                         key={tab}
                         onClick={() => setActiveTab(tab)}
@@ -471,52 +471,84 @@ export default function CustomersPage() {
                   {activeTab === 'overview' && (
                     <div className="space-y-6">
                       <div className="grid gap-4 sm:grid-cols-2">
-                        <div className="bg-zinc-900/40 p-5 border border-border/40 rounded-2xl hover:border-primary/20 transition duration-300 flex items-center gap-4">
-                          <div className="p-3 bg-primary/10 rounded-xl text-primary">
-                            <Coins className="h-5 w-5" />
+                        {/* Spendings */}
+                        <div className="bg-zinc-900/40 p-4 border border-border/40 rounded-2xl flex items-center gap-3">
+                          <div className="p-2.5 bg-primary/10 rounded-xl text-primary">
+                            <Coins className="h-4 w-4" />
                           </div>
                           <div>
-                            <span className="text-[9px] font-bold text-stone-400 uppercase tracking-wider block">Total Spendings</span>
-                            <span className="text-xl font-bold text-white font-display mt-0.5 block">
+                            <span className="text-[9px] font-bold text-stone-500 uppercase tracking-wider block">Total Spendings</span>
+                            <span className="text-base font-bold text-white font-display mt-0.5 block">
                               {formatCurrency(selectedCustomer.totalSpending)}
                             </span>
                           </div>
                         </div>
 
-                        <div className="bg-zinc-900/40 p-5 border border-border/40 rounded-2xl hover:border-primary/20 transition duration-300 flex items-center gap-4">
-                          <div className="p-3 bg-primary/10 rounded-xl text-primary">
-                            <Calendar className="h-5 w-5" />
+                        {/* Preferred Stylist */}
+                        <div className="bg-zinc-900/40 p-4 border border-border/40 rounded-2xl flex items-center gap-3">
+                          <div className="p-2.5 bg-violet-500/10 rounded-xl text-violet-400">
+                            <User className="h-4 w-4" />
                           </div>
                           <div>
-                            <span className="text-[9px] font-bold text-stone-400 uppercase tracking-wider block">Last Visit Date</span>
-                            <span className="text-sm font-semibold text-stone-200 mt-1 block font-sans">
+                            <span className="text-[9px] font-bold text-stone-500 uppercase tracking-wider block">Preferred Stylist</span>
+                            <span className="text-xs font-semibold text-stone-200 mt-1 block">
+                              {passportMetrics?.preferredStylist || 'None'}
+                            </span>
+                          </div>
+                        </div>
+
+                        {/* Preferred Services */}
+                        <div className="bg-zinc-900/40 p-4 border border-border/40 rounded-2xl flex items-center gap-3">
+                          <div className="p-2.5 bg-sky-500/10 rounded-xl text-sky-400">
+                            <Sparkles className="h-4 w-4" />
+                          </div>
+                          <div>
+                            <span className="text-[9px] font-bold text-stone-500 uppercase tracking-wider block">Preferred Services</span>
+                            <span className="text-xs font-semibold text-stone-200 mt-1 block truncate max-w-[150px]" title={passportMetrics?.preferredServices?.join(', ')}>
+                              {passportMetrics?.preferredServices?.join(', ') || 'None'}
+                            </span>
+                          </div>
+                        </div>
+
+                        {/* Revisit Score */}
+                        <div className="bg-zinc-900/40 p-4 border border-border/40 rounded-2xl flex items-center gap-3">
+                          <div className="p-2.5 bg-amber-500/10 rounded-xl text-amber-400">
+                            <Clock className="h-4 w-4" />
+                          </div>
+                          <div>
+                            <span className="text-[9px] font-bold text-stone-500 uppercase tracking-wider block">Revisit Score (Avg Interval)</span>
+                            <span className="text-base font-bold text-white font-display mt-0.5 block">
+                              {passportMetrics?.revisitScore ? `${passportMetrics.revisitScore} Days` : 'N/A'}
+                            </span>
+                          </div>
+                        </div>
+
+                        {/* Last Visit */}
+                        <div className="bg-zinc-900/40 p-4 border border-border/40 rounded-2xl flex items-center gap-3">
+                          <div className="p-2.5 bg-emerald-500/10 rounded-xl text-emerald-400">
+                            <Calendar className="h-4 w-4" />
+                          </div>
+                          <div>
+                            <span className="text-[9px] font-bold text-stone-500 uppercase tracking-wider block">Last Visit</span>
+                            <span className="text-xs font-semibold text-stone-200 mt-1 block">
                               {selectedCustomer.lastVisitAt 
-                                ? new Date(selectedCustomer.lastVisitAt).toLocaleDateString([], { month: 'long', day: 'numeric', year: 'numeric' })
-                                : 'No bookings recorded'}
+                                ? new Date(selectedCustomer.lastVisitAt).toLocaleDateString([], { month: 'short', day: 'numeric', year: 'numeric' })
+                                : 'No visits'}
                             </span>
                           </div>
                         </div>
 
-                        <div className="bg-zinc-900/40 p-5 border border-border/40 rounded-2xl hover:border-primary/20 transition duration-300 flex items-center gap-4">
-                          <div className="p-3 bg-primary/10 rounded-xl text-primary">
-                            <Clock className="h-5 w-5" />
+                        {/* Risk Level */}
+                        <div className="bg-zinc-900/40 p-4 border border-border/40 rounded-2xl flex items-center gap-3">
+                          <div className="p-2.5 bg-rose-500/10 rounded-xl text-rose-400">
+                            <AlertCircle className="h-4 w-4" />
                           </div>
                           <div>
-                            <span className="text-[9px] font-bold text-stone-400 uppercase tracking-wider block">Days Since Last Visit</span>
-                            <span className="text-xl font-bold text-white font-display mt-0.5 block">
-                              {daysSince(selectedCustomer.lastVisitAt) === null ? '-' : `${daysSince(selectedCustomer.lastVisitAt)} Days`}
-                            </span>
-                          </div>
-                        </div>
-
-                        <div className="bg-zinc-900/40 p-5 border border-border/40 rounded-2xl hover:border-primary/20 transition duration-300 flex items-center gap-4">
-                          <div className="p-3 bg-primary/10 rounded-xl text-primary">
-                            <Sparkles className="h-5 w-5" />
-                          </div>
-                          <div>
-                            <span className="text-[9px] font-bold text-stone-400 uppercase tracking-wider block">Lifecycle Status</span>
-                            <span className="text-xl font-bold text-white font-display mt-0.5 block">
-                              {lifecycleLabel(selectedCustomer.lifecycleStatus)}
+                            <span className="text-[9px] font-bold text-stone-500 uppercase tracking-wider block">Risk Level</span>
+                            <span className="text-xs font-semibold text-stone-200 mt-1 block">
+                              <Badge variant={passportMetrics?.riskLevel === 'HIGH' ? 'danger' : passportMetrics?.riskLevel === 'MEDIUM' ? 'gold' : 'success'}>
+                                {passportMetrics?.riskLevel || 'LOW'}
+                              </Badge>
                             </span>
                           </div>
                         </div>
@@ -719,6 +751,30 @@ export default function CustomersPage() {
                         </div>
                       </div>
 
+                    </div>
+                  )}
+
+                  {/* TAB 5: PHOTOS */}
+                  {activeTab === 'photos' && (
+                    <div className="space-y-4">
+                      <h4 className="text-xs font-bold uppercase tracking-wider text-primary">Treatment Photos & Showroom</h4>
+                      {photos.length === 0 ? (
+                        <div className="border border-dashed border-border/60 rounded-2xl p-12 text-center text-muted-foreground italic text-xs">
+                          No treatment photos uploaded yet for this client.
+                        </div>
+                      ) : (
+                        <div className="grid grid-cols-2 gap-4">
+                          {photos.map(photo => (
+                            <div key={photo.id} className="relative group bg-zinc-900 border border-border/45 rounded-2xl overflow-hidden shadow-md">
+                              <img src={photo.url} alt={photo.alt || 'Treatment'} className="w-full h-40 object-cover group-hover:scale-105 transition duration-300" />
+                              <div className="absolute inset-x-0 bottom-0 bg-black/60 p-2.5 text-[9px] text-white">
+                                <p className="font-semibold truncate">{photo.fileName}</p>
+                                <p className="text-slate-450 mt-0.5">{new Date(photo.createdAt).toLocaleDateString()}</p>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   )}
 

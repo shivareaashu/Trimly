@@ -3,6 +3,7 @@ import * as bookingRepo from './booking.repository.js';
 import { recalculateCustomerMetrics } from '../customers/customer.service.js';
 import { emitBookingEvent } from './booking.events.js';
 import { sendEmail, notificationTemplates } from '../../shared/services/notifications/notification.service.js';
+import { activityEmitter } from '../../shared/services/activity/activityEmitter.js';
 
 /**
  * Calculates available time slots for a given salon service on a specific date.
@@ -232,6 +233,7 @@ export async function createBooking(tenantId, data) {
 
   // 5. Emit event for async triggers (only after database transaction has committed successfully)
   await emitBookingEvent('booking.created', booking);
+  activityEmitter.emit('booking.created', { tenantId, booking });
 
   // Send booking confirmation email asynchronously
   if (booking.customer && booking.customer.email) {
@@ -323,6 +325,7 @@ export async function transitionBooking(tenantId, bookingId, action, payload = {
     throw new Error('Appointment booking not found.');
   }
 
+  const previousStatus = booking.status;
   const updateData = {};
 
   switch (action) {
@@ -412,6 +415,13 @@ export async function transitionBooking(tenantId, bookingId, action, payload = {
   }
 
   await emitBookingEvent(`booking.${action}`, updated);
+  activityEmitter.emit('booking.status_changed', {
+    tenantId,
+    booking: updated,
+    previousStatus,
+    newStatus: updated.status,
+    actorUserId: payload.actorUserId,
+  });
   return updated;
 }
 

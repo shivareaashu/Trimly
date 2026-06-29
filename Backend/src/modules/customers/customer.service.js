@@ -437,3 +437,130 @@ export async function purchaseMembership(tenantId, customerId, { planId, startsA
     return membership;
   });
 }
+
+export async function getCustomerPassport(tenantId, customerId) {
+  const customer = await customerRepo.findCustomerWithVisitHistory(tenantId, customerId);
+  if (!customer) {
+    throw new Error('Customer not found.');
+  }
+
+  const [loyaltyAccount, memberships, timelineEvents, mediaAssets] = await Promise.all([
+    prisma.loyaltyAccount.findUnique({
+      where: { tenantId_customerId: { tenantId, customerId } }
+    }).catch(() => null),
+    prisma.customerMembership.findMany({
+      where: { tenantId, customerId },
+      include: { membershipPlan: true },
+      orderBy: { startsAt: 'desc' }
+    }),
+    prisma.customerTimelineEvent.findMany({
+      where: { tenantId, customerId },
+      orderBy: { occurredAt: 'desc' },
+      take: 20
+    }),
+    prisma.mediaAsset.findMany({
+      where: {
+        tenantId,
+        tags: { has: customerId }
+      },
+      orderBy: { createdAt: 'desc' }
+    }).catch(() => [])
+  ]);
+
+  const completedVisits = customer.appointments.filter(a => a.status === 'COMPLETED' || a.status === 'PAID');
+  const visitsCount = completedVisits.length;
+
+  const staffCounts = {};
+  completedVisits.forEach(v => {
+    if (v.staff?.name) {
+      staffCounts[v.staff.name] = (staffCounts[v.staff.name] || 0) + 1;
+    }
+  });
+  let preferredStylist = 'None';
+  let maxStaffCount = 0;
+  Object.entries(staffCounts).forEach(([name, count]) => {
+    if (count > maxStaffCount) {
+      maxStaffCount = count;
+      preferredStylist = name;
+    }
+  });
+
+  const serviceCounts = {};
+  completedVisits.forEach(v => {
+    if (v.service?.name) {
+      serviceCounts[v.service.name] = (serviceCounts[v.service.name] || 0) + 1;
+    }
+  });
+  const preferredServices = Object.entries(serviceCounts)
+    .sort((a, b) => b[1] - a[1])
+    .map(x => x[0])
+    .slice(0, 3);
+
+  let revisitScore = 30;
+  if (visitsCount >= 2) {
+    const sortedDates = completedVisits.map(v => new Date(v.startTime).getTime()).sort((a, b) => a - b);
+    let totalDiff = 0;
+    for (let i = 1; i < sortedDates.length; i++) {
+      totalDiff += (sortedDates[i] - sortedDates[i - 1]);
+    }
+    revisitScore = Math.round(totalDiff / (sortedDates.length - 1) / 86400000);
+  }
+
+  const lastVisit = customer.lastVisitAt ? new Date(customer.lastVisitAt) : null;
+  const expectedDays = customer.expectedRevisitDays || 30;
+  let riskLevel = 'LOW';
+  let daysSinceLastVisit = null;
+  if (lastVisit) {
+    daysSinceLastVisit = Math.floor((Date.now() - lastVisit.getTime()) / 86400000);
+    if (daysSinceLastVisit > expectedDays * 2) {
+      riskLevel = 'HIGH';
+    } else if (daysSinceLastVisit > expectedDays * 1.5) {
+      riskLevel = 'MEDIUM';
+    }
+  }
+
+  const activeMembership = memberships.find(m => m.status === 'ACTIVE');
+
+  return {
+    customer: {
+      id: customer.id,
+      firstName: customer.firstName,
+      lastName: customer.lastName,
+      email: customer.email,
+      phone: customer.phone,
+      notes: customer.notes,
+      tags: customer.tags,
+      lifecycleStatus: customer.lifecycleStatus,
+      createdAt: customer.createdAt,
+    },
+    metrics: {
+      totalSpending: Number(customer.totalSpending),
+      visitsCount,
+      preferredStylist,
+      preferredServices,
+      revisitScore,
+      riskLevel,
+      daysSinceLastVisit,
+      lastVisitAt: customer.lastVisitAt
+    },
+    loyalty: loyaltyAccount ? {
+      pointsBalance: loyaltyAccount.pointsBalance,
+      lifetimePoints: loyaltyAccount.lifetimePoints,
+      redeemedPoints: loyaltyAccount.redeemedPoints
+    } : { pointsBalance: 0, lifetimePoints: 0, redeemedPoints: 0 },
+    activeMembership: activeMembership ? {
+      planName: activeMembership.membershipPlan?.name,
+      planCode: activeMembership.membershipPlan?.code,
+      endsAt: activeMembership.endsAt,
+      notes: activeMembership.notes
+    } : null,
+    timeline: timelineEvents,
+    photos: mediaAssets.map(asset => ({
+      id: asset.id,
+      url: asset.url,
+      fileName: asset.fileName,
+      alt: asset.alt,
+      createdAt: asset.createdAt
+    }))
+  };
+}

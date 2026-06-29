@@ -191,3 +191,12 @@ export async function handlePurchaseMembership(req, res) {
     return res.status(400).json({ error: error.message || 'Failed to purchase membership.' });
   }
 }
+
+export async function handleGetCustomerPassport(req, res) {
+  try {
+    const passport = await customerService.getCustomerPassport(req.tenant.id, req.params.id);
+    return res.status(200).json({ passport });
+  } catch (error) {
+    return res.status(500).json({ error: error.message || 'Failed to retrieve customer passport.' });
+  }
+}

@@ -83,6 +83,6 @@ export async function approveTenant(tenantId) {
 
 export async function listPlans() {
   return prisma.plan.findMany({
-    orderBy: { price: 'asc' }
+    orderBy: { priceMonthly: 'asc' }
   });
 }

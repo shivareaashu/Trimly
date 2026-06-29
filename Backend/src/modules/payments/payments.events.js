@@ -11,6 +11,14 @@ export async function emitPaymentEvent(eventName, payload) {
 
     console.log(`Payment event dispatched [${eventName}]:`, payload?.id || payload?.paymentId || 'unknown');
 
+    if (eventName === 'payment.paid') {
+      const { activityEmitter } = await import('../../shared/services/activity/activityEmitter.js');
+      const tenantId = payload?.tenantId;
+      if (tenantId) {
+        activityEmitter.emit('payment.received', { tenantId, payment: payload });
+      }
+    }
+
     if (redisClient && redisClient.isOpen) {
       await redisClient.publish('payment-events', message);
     }
